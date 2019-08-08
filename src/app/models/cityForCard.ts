@@ -1,5 +1,5 @@
 export class cityForCard{
-    cityId:number;
+    cityID:number;
     cityName:string;
     CityPhotoPath:string;
 }
