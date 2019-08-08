@@ -1,0 +1,36 @@
+<div class="container">
+  <div class="row" *ngIf="!country ; else countryDetail">
+    <div class="col-4" *ngFor="let c of countries" style="margin-top: 15px">
+      <div class="card" style="width:100%;height: 360px;">
+        <img class="card-img-top" style="width: 100%;height:250px" src="{{c.flagPhotoPath}}" alt="{{c.countryName}}">
+        <div class="card-body">
+          <h5 class="card-title">{{c.countryName}}</h5>
+          <a href="#" class="form-control btn btn-primary" routerLink="/country/{{c.countryID}}">İncele</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <ng-template #countryDetail>
+    <ul>
+      <li>
+        {{country.countryName}}
+      </li>
+      <li>
+        {{country.population}}
+      </li>
+      <li>
+        {{country.capital}}
+      </li>
+      <li>
+        {{country.president}}
+      </li>
+      <li>
+        {{country.summaryInfo}}
+      </li>
+      <li>
+        {{country.ethnicIdentity}}
+      </li>
+    </ul>
+    <a class="btn btn-primary" routerLink="/cities/{{country.countryID}}" >Şehirleri İncele</a>
+  </ng-template>
+</div>

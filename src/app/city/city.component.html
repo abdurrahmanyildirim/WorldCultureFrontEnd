@@ -1,0 +1,27 @@
+<div class="container">
+    <div class="row" *ngIf="!city ; else cityDetail">
+      <div class="col-4" *ngFor="let c of citiesForCard" style="margin-top: 15px">
+        <div class="card" style="width:100%;height: 360px;">
+          <img class="card-img-top" style="width: 100%;height:250px" src="{{c.cityPhotoPath}}" alt="{{c.cityName}}">
+          <div class="card-body">
+            <h5 class="card-title">{{c.cityName}}</h5>
+            <a href="#" class="form-control btn btn-primary" routerLink="/city/{{c.cityId}}">İncele</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <ng-template #countryDetail>
+      <ul>
+        <li>
+          {{city.cityName}}
+        </li>
+        <li>
+          {{city.description}}
+        </li>
+        <li>
+          {{city.population}}
+        </li>
+      </ul>
+      <a class="btn btn-primary" routerLink="famousPlace/{{country.CountryID}}" >Önemli Mekanları Görüntüle</a>
+    </ng-template>
+  </div>
