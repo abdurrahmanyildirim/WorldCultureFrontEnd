@@ -5,6 +5,7 @@ import { CityComponent } from './city/city.component';
 import { FamousPlaceComponent } from './famous-place/famous-place.component';
 import { PostComponent } from './post/post.component';
 import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './register/register.component';
 
 export const routes: Routes = [
   { path: 'countries', component: CountryComponent },
@@ -16,6 +17,7 @@ export const routes: Routes = [
   { path: 'posts/:famousPlaceID', component: PostComponent },
   { path: 'post/:postID', component: PostComponent },
   { path: 'login', component: LoginComponent },
+  { path: 'register', component: RegisterComponent },
   { path: '', component: CountryComponent },
   { path: '**', redirectTo: 'countries', pathMatch: 'full' }
 

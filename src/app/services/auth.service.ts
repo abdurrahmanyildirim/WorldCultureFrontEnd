@@ -40,7 +40,7 @@ export class AuthService {
     this.httpClient
       .post(this.baseUrl + "register", registerUser, { headers: headers })
       .subscribe(data => {
-
+        this.router.navigateByUrl('/countries');
       })
   }
 

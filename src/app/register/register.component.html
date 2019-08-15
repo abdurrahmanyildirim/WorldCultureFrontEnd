@@ -1,0 +1,82 @@
+<div class="row justify-content-md-center">
+  <div class="col-4">
+    <div class="card text-center" style="margin-top: 15px">
+      <div class="card-header">
+        <h3>Üye Formu</h3>
+      </div>
+      <div class="card-body">
+        <form [formGroup]="registerForm" (ngSubmit)="register()">
+          <div class="form-group">
+            <input class="form-control" type="text" name="firstName" formControlName="firstName" required
+              placeholder="Adınız">
+              <span class="help-block"
+              *ngIf="registerForm.get('firstName').hasError('required') && registerForm.get('firstName').touched">
+              Adınız zorunlu.
+            </span>
+            <span class="help-block"
+              *ngIf="registerForm.get('firstName').hasError('maxlength') && registerForm.get('firstName').touched">
+              30 karakterden fazla olamaz.
+            </span>
+          </div>
+          <div class="form-group">
+            <input class="form-control" type="text" name="lastName" formControlName="lastName" required
+              placeholder="Soyadınız">
+              <span class="help-block"
+              *ngIf="registerForm.get('lastName').hasError('required') && registerForm.get('lastName').touched">
+              Soyadınız zorunlu.
+            </span>
+            <span class="help-block"
+              *ngIf="registerForm.get('firstName').hasError('maxlength') && registerForm.get('firstName').touched">
+              30 karakterden fazla olamaz.
+            </span>
+          </div>
+          <div class="form-group">
+            <input class="form-control" type="text" name="email" formControlName="email" required placeholder="Email"
+             pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$">
+            <span class="help-block"
+              *ngIf="registerForm.get('email').hasError('required') && registerForm.get('email').touched">
+              Email adresi zorunlu.
+            </span>
+            <span class="help-block" *ngIf="registerForm.get('email').errors?.pattern">
+                Email Adresi Uygun Değil.
+           </span> 
+          </div>
+          <div class="form-group">
+            <input class="form-control" type="password" name="password" formControlName="password"  required
+              placeholder="Şifre">
+              <span class="help-block"
+              *ngIf="registerForm.get('password').hasError('required') && registerForm.get('password').touched">
+              Şifre zorunlu.
+            </span>
+            <span class="help-block"
+              *ngIf="registerForm.get('password').hasError('maxlength') && registerForm.get('password').touched">
+              20 karakterden fazla olamaz.
+            </span>
+            <span class="help-block"
+              *ngIf="registerForm.get('password').hasError('minlength') && registerForm.get('password').touched">
+              4 karakterden az olamaz.
+            </span>
+          </div>
+          <div class="form-group">
+            <input class="form-control" type="password" name="confirmPassword"
+            formControlName="confirmPassword" required placeholder="Şifre Tekrar">
+            <span class="help-block" *ngIf="registerForm.errors?.matchingFields">
+              Şifreler uyumlu değil!
+            </span>
+          </div>
+          <div class="form-group">
+            <input class="form-control" type="date" name="birthDate" formControlName="birthDate" required
+              placeholder="Doğum tarihiniz">
+              <span class="help-block"
+              *ngIf="registerForm.get('birthDate').hasError('required') && registerForm.get('birthDate').touched">
+             Zorunlu Alan!
+            </span>
+          </div>
+          <div class="form-group">
+            <input type="submit" class="btn btn-success form-control" [disabled]="!registerForm.valid" value="Üye Ol" />
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
