@@ -12,6 +12,7 @@ import { FamousPlaceComponent } from './famous-place/famous-place.component';
 import { PostComponent } from './post/post.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
+import { ProfileComponent } from './profile/profile.component';
 
 @NgModule({
    declarations: [
@@ -22,7 +23,8 @@ import { RegisterComponent } from './register/register.component';
       FamousPlaceComponent,
       PostComponent,
       LoginComponent,
-      RegisterComponent
+      RegisterComponent,
+      ProfileComponent
    ],
    imports: [
       BrowserModule,

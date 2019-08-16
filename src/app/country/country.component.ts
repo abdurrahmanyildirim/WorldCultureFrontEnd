@@ -27,15 +27,13 @@ export class CountryComponent implements OnInit {
 
   fillData(countryId) {
     if (countryId) {
-      this.countryService.getCountryById(countryId).subscribe(data=>{
-        this.country=data;
+      this.countryService.getCountryById(countryId).subscribe(data => {
+        this.country = data;
       })
-      this.countries= null;
     } else {
-      this.countryService.getCountries().subscribe(data=>{
-        this.countries=data;
+      this.countryService.getCountries().subscribe(data => {
+        this.countries = data;
       })
-      this.country= null;
     }
   }
 
