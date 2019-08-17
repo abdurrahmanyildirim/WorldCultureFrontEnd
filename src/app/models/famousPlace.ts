@@ -1,4 +1,4 @@
-export class famousPlace{
+export class FamousPlace{
     famousPlaceID:number;
     placeName:string;
     description:string;

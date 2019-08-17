@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { CityService } from '../services/city.service';
 import { ActivatedRoute } from '@angular/router';
 import { from } from 'rxjs';
-import { city } from '../models/city';
-import { cityForCard } from '../models/cityForCard';
+import { City } from '../models/city';
+import { CityForCard } from '../models/cityForCard';
 
 @Component({
   selector: 'app-city',
@@ -17,8 +17,8 @@ export class CityComponent implements OnInit {
     private activatedRoute: ActivatedRoute
   ) { }
 
-  city: city;
-  citiesForCard: cityForCard[];
+  city: City;
+  citiesForCard: CityForCard[];
 
   ngOnInit() {
     this.activatedRoute.params.subscribe(params => {

@@ -22,11 +22,11 @@ export class RegisterComponent implements OnInit {
 
   createRegisterForm() {
     this.registerForm = this.formBuilder.group({
-      email: ["", [Validators.required, Validators.maxLength(30)]],
+      email: ["", [Validators.required, Validators.maxLength(60)]],
       password: ["", [Validators.required, Validators.minLength(4), Validators.maxLength(20)]],
       confirmPassword: ["", Validators.required],
-      firstName: ["", [Validators.required, Validators.maxLength(30)]],
-      lastName: ["", [Validators.required, Validators.maxLength(30)]],
+      firstName: ["", [Validators.required, Validators.maxLength(50)]],
+      lastName: ["", [Validators.required, Validators.maxLength(50)]],
       birthDate: ["", Validators.required]
     },
       { validator: this.matchingFields('password', 'confirmPassword') }

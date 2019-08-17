@@ -6,6 +6,8 @@ import { FamousPlaceComponent } from './famous-place/famous-place.component';
 import { PostComponent } from './post/post.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
+import { ProfileComponent } from './profile/profile.component';
+import { ProfileDetailComponent } from './profile/profile-detail/profile-detail.component';
 
 export const routes: Routes = [
   { path: 'countries', component: CountryComponent },
@@ -18,9 +20,10 @@ export const routes: Routes = [
   { path: 'post/:postID', component: PostComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
+  { path: 'profile/:accountID', component: ProfileComponent },
+  { path: 'profileDetail/:accountID', component: ProfileDetailComponent },
   { path: '', component: CountryComponent },
   { path: '**', redirectTo: 'countries', pathMatch: 'full' }
-
 ];
 
 @NgModule({

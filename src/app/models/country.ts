@@ -1,4 +1,4 @@
-export class country{
+export class Country{
     countryID:number;
     countryName:string;
     population:string;

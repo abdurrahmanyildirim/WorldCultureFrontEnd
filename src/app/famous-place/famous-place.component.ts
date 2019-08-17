@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FamousPlaceService } from '../services/famous-place.service';
 import { ActivatedRoute } from '@angular/router';
-import { famousPlace } from '../models/famousPlace';
-import { famousPlaceForCard } from '../models/famousPlaceForCard';
+import { FamousPlace } from '../models/famousPlace';
+import { FamousPlaceForCard } from '../models/famousPlaceForCard';
 
 @Component({
   selector: 'app-famous-place',
@@ -16,8 +16,8 @@ export class FamousPlaceComponent implements OnInit {
     private activatedRoute: ActivatedRoute
   ) { }
 
-  famousPlace: famousPlace;
-  famousPlacesForCard: famousPlaceForCard[];
+  famousPlace: FamousPlace;
+  famousPlacesForCard: FamousPlaceForCard[];
 
   ngOnInit() {
     this.activatedRoute.params.subscribe(params => {

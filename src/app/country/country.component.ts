@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { CountryService } from '../services/country.service';
-import { country } from '../models/country';
-import { countryForCard } from '../models/countryForCard';
+import { Country } from '../models/country';
+import { CountryForCard } from '../models/countryForCard';
 
 @Component({
   selector: 'app-country',
@@ -15,8 +15,8 @@ export class CountryComponent implements OnInit {
   constructor(private activatedRoute: ActivatedRoute
     , private countryService: CountryService) { }
 
-  country: country;
-  countries: countryForCard[];
+  country: Country;
+  countries: CountryForCard[];
   ngOnInit() {
     this.activatedRoute.params.subscribe(params => {
       this.fillData(params["countryId"])

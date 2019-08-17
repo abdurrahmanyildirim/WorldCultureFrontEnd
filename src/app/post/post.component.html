@@ -13,13 +13,14 @@
   <ng-template #postDetail>
       <div class="row" style="margin-top: 15px;">
           <div class="col-6">
-            <img src="{{post.postPhotoPath}}" style="width: 100%; height:400px;" alt="{{post.title}}">
+            <img class="img-thumbnail" src="{{post.postPhotoPath}}" style="width: 100%; height:400px;" alt="{{post.title}}">
           </div>
           <div class="col-6">
             <div class="card">
               <div class="card-body">
                   <p><strong>Başlık:</strong> {{post.title}}</p>
                   <p><strong>İçerik:</strong> {{post.description}}</p>
+                  <a class="btn btn-primary" routerLink="/profile/{{post.accountID}}">Paylaşan Hesabı İncele</a>
               </div>
             </div>
           </div>

@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { PostService } from '../services/post.service';
 import { ActivatedRoute } from '@angular/router';
-import { postForCard } from '../models/postForCard';
-import { post } from '../models/post';
+import { PostForCard } from '../models/postForCard';
+import { Post } from '../models/post';
 
 @Component({
   selector: 'app-post',
@@ -15,8 +15,8 @@ export class PostComponent implements OnInit {
   constructor(private activatedRoute: ActivatedRoute,
     private postService: PostService) { }
 
-  postsForCards: postForCard[];
-  post: post;
+  postsForCards: PostForCard[];
+  post: Post;
 
   ngOnInit() {
     this.activatedRoute.params.subscribe(params => {

@@ -1,4 +1,5 @@
-export class post{
+export class Post{
+    accountID:number;
     postID:number;
     title:string;
     postPhotoPath:string;

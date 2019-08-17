@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { cityForCard } from '../models/cityForCard';
-import { city } from '../models/city';
+import { CityForCard } from '../models/cityForCard';
+import { City } from '../models/city';
 
 @Injectable({
   providedIn: 'root'
@@ -12,11 +12,11 @@ export class CityService {
   constructor(private httpClient: HttpClient) { }
 
   baseUrl:string="https://localhost:44303/api/";
-  getCitiesByCountryID(countryId):Observable<cityForCard[]> {
-    return this.httpClient.get<cityForCard[]>(this.baseUrl + "cities/"+countryId);
+  getCitiesByCountryID(countryId):Observable<CityForCard[]> {
+    return this.httpClient.get<CityForCard[]>(this.baseUrl + "cities/"+countryId);
   }
 
-  getCityByCityID(cityId):Observable<city>{
-    return this.httpClient.get<city>(this.baseUrl+"city/"+cityId);
+  getCityByCityID(cityId):Observable<City>{
+    return this.httpClient.get<City>(this.baseUrl+"city/"+cityId);
   }
 }
