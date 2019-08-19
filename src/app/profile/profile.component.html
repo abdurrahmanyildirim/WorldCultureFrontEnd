@@ -7,7 +7,15 @@
         <br>
         <strong>{{account.firstName}} {{account.lastName}}</strong>
         <p>{{account.personelInfo}}</p>
-        <a class="btn btn-primary" routerLink="/profileDetail/{{account.accountID}}">Paylaşımları İncele</a>
+        <div class="form-group">
+          <a class="btn btn-primary form-control" routerLink="/profileDetail/{{account.accountID}}">Paylaşımları
+            İncele</a>
+        </div>
+        <div *ngIf="!isMain">
+          <div class="form-group">
+            <a class="btn btn-warning form-control" (click)="changeToRelationStatus()">{{followButton}}</a>
+          </div>
+        </div>
       </div>
     </div>
   </div>
