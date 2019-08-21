@@ -3,6 +3,9 @@ import { PostService } from '../services/post.service';
 import { ActivatedRoute } from '@angular/router';
 import { PostForCard } from '../models/postForCard';
 import { Post } from '../models/post';
+import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
+import { Review } from '../models/review';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-post',
@@ -13,10 +16,15 @@ import { Post } from '../models/post';
 export class PostComponent implements OnInit {
 
   constructor(private activatedRoute: ActivatedRoute,
-    private postService: PostService) { }
+    private postService: PostService,
+    private formBuilder: FormBuilder,
+    private authService:AuthService) { }
 
   postsForCards: PostForCard[];
   post: Post;
+  reviews: Review[];
+  reviewForm: FormGroup;
+  review: any = {};
 
   ngOnInit() {
     this.activatedRoute.params.subscribe(params => {
@@ -24,8 +32,35 @@ export class PostComponent implements OnInit {
         this.getPosts(params["famousPlaceID"])
       } else {
         this.getPost(params["postID"])
+        this.createReviewForm(params["postID"])
+        this.getReviews(params["postID"])
       }
     })
+  }
+
+  createReviewForm(postId) {
+    this.reviewForm = this.formBuilder.group({
+      postID: postId,
+      name: ["", [Validators.required, Validators.maxLength(30)]],
+      rate: ["", [Validators.required]],
+      reviewContent: ["", [Validators.required, Validators.maxLength(300)]]
+    });
+  }
+
+  getReviews(postId) {
+    this.postService.getReviews(postId).subscribe(data => {
+      this.reviews = data;
+    })
+  }
+
+  sendReview() {
+    if (this.reviewForm.valid) {
+      this.review = Object.assign({}, this.reviewForm.value);
+      this.postService.sendReview(this.review).subscribe(data => {
+        this.reviews = data;
+        this.reviewForm.reset();
+      });
+    }
   }
 
   getPosts(placeId) {
@@ -38,5 +73,9 @@ export class PostComponent implements OnInit {
     this.postService.getPost(postId).subscribe(data => {
       this.post = data;
     })
+  }
+
+  get isAuthenticate(){
+    return this.authService.loggedIn();
   }
 }

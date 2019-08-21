@@ -44,6 +44,11 @@ export class AuthService {
       })
   }
 
+  get header(){
+    let headers=new HttpHeaders().set('Authorization', 'Bearer ' + this.token)
+    return headers;
+  }
+
   saveToken(token) {
     localStorage.setItem(this.TOKEN_KEY, token);
   }

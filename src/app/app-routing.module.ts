@@ -8,6 +8,7 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { ProfileComponent } from './profile/profile.component';
 import { ProfileDetailComponent } from './profile/profile-detail/profile-detail.component';
+import { FollowingAccountComponent } from './followingAccount/followingAccount.component';
 
 export const routes: Routes = [
   { path: 'countries', component: CountryComponent },
@@ -23,6 +24,7 @@ export const routes: Routes = [
   { path: 'profile/:accountID', component: ProfileComponent },
   { path: 'profileDetail/:accountID', component: ProfileDetailComponent },
   { path: '', component: CountryComponent },
+  { path: 'followings', component: FollowingAccountComponent },
   { path: '**', redirectTo: 'countries', pathMatch: 'full' }
 ];
 

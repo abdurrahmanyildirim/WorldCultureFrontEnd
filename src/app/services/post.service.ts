@@ -1,15 +1,18 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { PostForCard } from '../models/postForCard';
 import { Post } from '../models/post';
+import { AuthService } from './auth.service';
+import { Review } from '../models/review';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PostService {
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient,
+    private authService: AuthService) { }
 
   baseUrl: string = "https://localhost:44303/api/";
 
@@ -17,11 +20,25 @@ export class PostService {
     return this.httpClient.get<PostForCard[]>(this.baseUrl + "posts/" + placeId);
   }
 
-  getPostsByUserID(userId):Observable<PostForCard[]>{
-    return this.httpClient.get<PostForCard[]>(this.baseUrl+"postsByAccount/"+userId);
+  getPostsByUserID(userId): Observable<PostForCard[]> {
+    return this.httpClient.get<PostForCard[]>(this.baseUrl + "postsByAccount/" + userId);
   }
 
   getPost(postId): Observable<Post> {
     return this.httpClient.get<Post>(this.baseUrl + "post/" + postId);
+  }
+
+  getFollowingPosts(): Observable<PostForCard[]> {
+    // let headers = new HttpHeaders().set('Authorization', 'Bearer ' + this.authService.token)
+    return this.httpClient.get<PostForCard[]>(this.baseUrl + "followingAccountPosts", { headers: this.authService.header })
+  }
+
+  sendReview(review:Review): Observable<Review[]> {
+    return this.httpClient
+    .post<Review[]>(this.baseUrl + "addReview",review, { headers: this.authService.header });
+  }
+
+  getReviews(postId):Observable<Review[]>{
+    return this.httpClient.get<Review[]>(this.baseUrl+"reviews/"+postId);
   }
 }
