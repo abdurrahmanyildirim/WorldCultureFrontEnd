@@ -5,7 +5,6 @@ import { PostForCard } from '../models/postForCard';
 import { Post } from '../models/post';
 import { AuthService } from './auth.service';
 import { Review } from '../models/review';
-import { PostForUpload } from '../models/postForUpload';
 
 @Injectable({
   providedIn: 'root'
@@ -18,7 +17,8 @@ export class PostService {
   baseUrl: string = "https://localhost:44303/api/";
 
   addPost(post:any) {
-    this.httpClient.post(this.baseUrl + "post/createPost", post, { headers: this.authService.headers }).subscribe();
+    this.httpClient.post(this.baseUrl + "post/createPost", post, { headers: this.authService.headers })
+    .subscribe();
   }
 
   getPosts(placeId): Observable<PostForCard[]> {

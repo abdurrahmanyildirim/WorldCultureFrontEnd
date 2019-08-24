@@ -11,12 +11,14 @@
         <li class="nav-item">
           <a class="nav-link" routerLink="/countries"><i style="font-size: 30px" class="fas fa-globe-europe"></i> </a>
         </li>
-        <li class="nav-item" *ngIf="isAuthenticate">
-          <a class="nav-link" routerLink="/followings"><i style="font-size: 30px" class="fas fa-users"></i></a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/addPost"><i class="fas fa-marker" style="font-size: 30px"></i></a>
-        </li>
+        <div *ngIf="isAuthenticate">
+          <li class="nav-item" >
+            <a class="nav-link" routerLink="/followings"><i style="font-size: 30px" class="fas fa-users"></i></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/addPost"><i class="fas fa-marker" style="font-size: 30px"></i></a>
+          </li>
+        </div>
       </ul>
       <div *ngIf="!isAuthenticate" class="pull-right">
         <ul class="navbar-nav mr-auto">

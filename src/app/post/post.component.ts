@@ -1,12 +1,12 @@
-import { Component, OnInit, TrackByFunction } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { PostService } from '../services/post.service';
 import { ActivatedRoute } from '@angular/router';
 import { PostForCard } from '../models/postForCard';
 import { Post } from '../models/post';
-import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Review } from '../models/review';
 import { AuthService } from '../services/auth.service';
-import { identifierModuleUrl } from '@angular/compiler';
+import { AlertifyService } from '../services/alertify.service';
 
 @Component({
   selector: 'app-post',
@@ -19,7 +19,8 @@ export class PostComponent implements OnInit {
   constructor(private activatedRoute: ActivatedRoute,
     private postService: PostService,
     private formBuilder: FormBuilder,
-    private authService:AuthService) { }
+    private authService:AuthService,
+    private alertifyService:AlertifyService) { }
 
   postsForCards: PostForCard[];
   post: Post;
@@ -60,6 +61,7 @@ export class PostComponent implements OnInit {
       this.postService.sendReview(this.review).subscribe(data => {
         this.reviews = data;
         this.reviewForm.reset();
+        this.alertifyService.success("Yorum gönderildi.")
       });
     }
   }

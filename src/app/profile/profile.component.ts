@@ -3,6 +3,7 @@ import { ProfileService } from '../services/profile.service';
 import { ProfileUser } from '../models/profileUser';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
+import { AlertifyService } from '../services/alertify.service';
 
 @Component({
   selector: 'app-profile',
@@ -14,7 +15,8 @@ export class ProfileComponent implements OnInit {
   constructor(private profileService: ProfileService,
     private activatedRoute: ActivatedRoute,
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+    private alertifyService:AlertifyService
   ) { }
 
   account: ProfileUser;
@@ -49,6 +51,7 @@ export class ProfileComponent implements OnInit {
       this.profileService.changeToRelationStatus(this.routeId).subscribe();
       this.router.navigateByUrl('/profile/' + this.routeId);
     } else {
+      this.alertifyService.error("Sisteme giriş yapmalısınız.")
       this.router.navigateByUrl('/login');
     }
   }

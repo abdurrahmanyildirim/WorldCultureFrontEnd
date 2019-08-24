@@ -11,6 +11,7 @@ import { PostService } from '../services/post.service';
 import { FileUploader } from 'ng2-file-upload';
 import { Photo } from '../models/photo';
 import { Router } from '@angular/router';
+import { AlertifyService } from '../services/alertify.service';
 
 @Component({
   selector: 'app-add-post',
@@ -26,7 +27,8 @@ export class AddPostComponent implements OnInit {
     private formBuilder: FormBuilder,
     private authService: AuthService,
     private postService: PostService,
-    private router:Router) { }
+    private router:Router,
+    private alertifyService:AlertifyService) { }
 
   countries: CountryForCard[];
   cities: CityForCard[];
@@ -60,6 +62,7 @@ export class AddPostComponent implements OnInit {
     if (this.postForm.valid) {
       this.post = Object.assign({}, this.postForm.value)
       this.postService.addPost(this.post);
+      this.alertifyService.success("Post paylaşımı başarılı.");
       this.router.navigateByUrl("/countries");
     }
   }
@@ -82,27 +85,10 @@ export class AddPostComponent implements OnInit {
           postPhotoPath: res.postPhotoPath,
           publicId: res.publicId
         })
+        this.alertifyService.success("Fotoğraf başarıyla yüklendi.")
       }
     }
   }
-
-  // onFileSelected(event) {
-  //   // this.selectedFile = <File>event.target.files[0];
-  //   // var reader = new FileReader();
-  //   // reader.onload = (e: any) => {
-  //   //   this.imageUrl = e.target.result;
-  //   // }
-  //   // reader.readAsDataURL(this.selectedFile);
-  //   // let fd = new FormData();
-  //   // fd.append('filesData', this.selectedFile, this.selectedFile.name)
-  //   // this.postForm.patchValue({
-  //   //   file: this.selectedFile
-  //   // });
-  //   // var options = { content: fd };
-  //   // this.postService.sample(options);
-  //   // console.log(fd);
-  //   // console.log(this.selectedFile);
-  // }
 
   getCountries() {
     this.countryService.getCountries().subscribe(data => {

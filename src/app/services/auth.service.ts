@@ -4,6 +4,7 @@ import { LoginUser } from '../models/loginUser';
 import { JwtHelper, tokenNotExpired } from 'angular2-jwt';
 import { Router } from '@angular/router';
 import { RegisterUser } from '../models/registerUser';
+import { AlertifyService } from './alertify.service';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +13,8 @@ export class AuthService {
 
   constructor(
     private httpClient: HttpClient,
-    private router: Router
+    private router: Router,
+    private alertifyService:AlertifyService
   ) { }
 
   baseUrl: string = "https://localhost:44303/api/auth/";
@@ -30,6 +32,7 @@ export class AuthService {
         this.saveToken(data);
         this.userToken = data;
         this.decodenToken = this.jwtHelper.decodeToken(data.toString());
+        this.alertifyService.success("Giriş yapıldı.")
         this.router.navigateByUrl('/countries');
       })
   }
@@ -40,7 +43,8 @@ export class AuthService {
     this.httpClient
       .post(this.baseUrl + "register", registerUser, { headers: headers })
       .subscribe(data => {
-        this.router.navigateByUrl('/countries');
+        this.alertifyService.success("Üyelik işlemi başarılı. Giriş yapabilirsiniz.")
+        this.router.navigateByUrl('/login');
       })
   }
 
@@ -56,6 +60,7 @@ export class AuthService {
 
   logOut(){
     localStorage.removeItem(this.TOKEN_KEY);
+    this.alertifyService.warning("Çıkış yapıldı.")
   }
 
   loggedIn(){

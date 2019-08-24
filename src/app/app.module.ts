@@ -2,7 +2,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import {FileUploadModule} from 'ng2-file-upload'
+import {FileUploadModule} from 'ng2-file-upload';
+
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -17,6 +18,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { ProfileDetailComponent } from './profile/profile-detail/profile-detail.component';
 import { FollowingAccountComponent } from './followingAccount/followingAccount.component';
 import { AddPostComponent } from './add-post/add-post.component';
+import { AlertifyService } from './services/alertify.service';
 
 @NgModule({
    declarations: [
@@ -41,7 +43,7 @@ import { AddPostComponent } from './add-post/add-post.component';
       ReactiveFormsModule,
       FileUploadModule
    ],
-   providers: [],
+   providers: [AlertifyService],
    bootstrap: [
       AppComponent
    ]
