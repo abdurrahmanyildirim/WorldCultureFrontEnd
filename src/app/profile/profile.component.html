@@ -13,7 +13,8 @@
         </div>
         <div *ngIf="!isMain">
           <div class="form-group">
-            <a class="btn btn-warning form-control" (click)="changeToRelationStatus()">{{followButton}}</a>
+            <input type="button" class="btn btn-warning form-control" (click)="changeToRelationStatus()"
+              value="{{followButton}}">
           </div>
         </div>
       </div>

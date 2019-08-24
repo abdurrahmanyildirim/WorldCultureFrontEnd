@@ -10,12 +10,19 @@ export class HeaderComponent implements OnInit {
 
   constructor(private authService:AuthService) { }
 
+  currentAccountId:number;
+
   ngOnInit() {
+    if(this.isAuthenticate){
+      this.currentAccountId=this.authService.getCurrentAccountId();
+    }
   }
 
   get isAuthenticate(){
     return this.authService.loggedIn();
   }
+
+
 
   logOut(){
     this.authService.logOut();

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TrackByFunction } from '@angular/core';
 import { PostService } from '../services/post.service';
 import { ActivatedRoute } from '@angular/router';
 import { PostForCard } from '../models/postForCard';
@@ -6,6 +6,7 @@ import { Post } from '../models/post';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { Review } from '../models/review';
 import { AuthService } from '../services/auth.service';
+import { identifierModuleUrl } from '@angular/compiler';
 
 @Component({
   selector: 'app-post',

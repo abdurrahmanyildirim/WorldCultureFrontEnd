@@ -2,8 +2,6 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { ProfileUser } from '../models/profileUser';
-import { Relation } from '../models/relation';
-import { Router } from '@angular/router';
 import { AuthService } from './auth.service';
 
 @Injectable({
@@ -12,7 +10,6 @@ import { AuthService } from './auth.service';
 export class ProfileService {
 
   constructor(private httpClient: HttpClient,
-    private router: Router,
     private authService: AuthService
   ) { }
 
@@ -23,16 +20,11 @@ export class ProfileService {
   }
 
   getRelationStatus(userId): Observable<boolean> {
-    let headers = new HttpHeaders().set('Authorization', 'Bearer ' + this.authService.token);
-    return this.httpClient.get<boolean>(this.baseUrl + "isFollower/" + userId,{headers:headers});
+    return this.httpClient.get<boolean>(this.baseUrl + "isFollower/" + userId, { headers: this.authService.headers });
   }
 
   changeToRelationStatus(userId) {
-    let headers = new HttpHeaders().set('Authorization', 'Bearer ' + this.authService.token);
     return this.httpClient
-      .post(this.baseUrl + "changeToRelationStatus/" + userId, { headers: headers })
-      .subscribe(data => {
-        this.router.navigateByUrl('profile/' + userId);
-      });
+      .get(this.baseUrl + "changeToRelationStatus/" + userId, { headers: this.authService.headers });
   }
 }
