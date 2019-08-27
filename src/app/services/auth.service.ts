@@ -60,7 +60,7 @@ export class AuthService {
 
   logOut(){
     localStorage.removeItem(this.TOKEN_KEY);
-    this.alertifyService.warning("Çıkış yapıldı.")
+    this.alertifyService.error("Çıkış yapıldı.")
   }
 
   loggedIn(){

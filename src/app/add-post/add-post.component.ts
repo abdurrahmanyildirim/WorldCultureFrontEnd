@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectorRef, ViewChild } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { CountryForCard } from '../models/countryForCard';
 import { CityForCard } from '../models/cityForCard';
 import { FamousPlaceForCard } from '../models/famousPlaceForCard';

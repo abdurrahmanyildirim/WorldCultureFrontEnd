@@ -17,12 +17,9 @@
             </select>
           </div>
           <div class="form-group">
-            <select class="form-control" name="famousPlaceID" formControlName="famousPlaceID">
+            <select class="form-control" formControlName="famousPlaceID">
               <option *ngFor="let place of famousPlaces" [value]="place.famousPlaceID">{{place.placeName}}</option>
             </select>
-          </div>
-          <div class="form-group" *ngIf="imageUrl">
-            <img [src]="imageUrl" style="width: 100%;height: 200px;">
           </div>
           <div class="form-group">
             <input #fileInput style="display: none" type="file" ng2FileSelect [uploader]="uploader">
@@ -39,7 +36,7 @@
             <input name="title" formControlName="title" type="text" class="form-control" placeholder="Başlık">
           </div>
           <div class="form-group">
-            <textarea class="form-control" style="height: 100px;" name="description" formControlName="description"
+            <textarea class="form-control" style="height: 100px" formControlName="description"
               placeholder="İçerik"></textarea>
           </div>
           <div class="form-group">

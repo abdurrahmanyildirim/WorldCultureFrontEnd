@@ -1,22 +1,29 @@
 <div class="container">
-  <div class="row justify-content-md-center" style="margin-top: 15px;">
-    <div class="card">
-      <div class="card-body">
-        <img class="img-thumbnail pull-left" src="{{account.profilePhotoPath}}" alt="{{account.firstName}}"
-          style="width: 100%; height:150px;border-radius: 50%;padding: 0;margin: 0;">
-        <br>
-        <strong>{{account.firstName}} {{account.lastName}}</strong>
-        <p>{{account.personelInfo}}</p>
-        <div class="form-group">
-          <a class="btn btn-primary form-control" routerLink="/profileDetail/{{account.accountID}}">Paylaşımları
-            İncele</a>
-        </div>
-        <div *ngIf="!isMain">
+  <div class="row" style="margin-top: 15px;">
+    <div class="col-3">
+      <div class="card">
+        <div class="card-body">
+          <img class="img-thumbnail pull-left" src="{{account.profilePhotoPath}}" alt="{{account.firstName}}"
+            style="width: 100%; height:150px;border-radius: 50%;padding: 0;margin: 0;">
+          <br>
+          <strong>{{account.firstName}} {{account.lastName}}</strong>
+          <p>{{account.personelInfo}}</p>
           <div class="form-group">
-            <input type="button" class="btn btn-warning form-control" (click)="changeToRelationStatus()"
-              value="{{followButton}}">
+            <a class="btn btn-primary form-control" routerLink="/profileDetail/{{account.accountID}}">Paylaşımları
+              İncele</a>
+          </div>
+          <div *ngIf="!isMain">
+            <div class="form-group">
+              <input type="button" class="btn btn-warning form-control" (click)="changeToRelationStatus()"
+                value="{{followButton}}">
+            </div>
           </div>
         </div>
+      </div>
+    </div>
+    <div class="col-8">
+      <div *ngIf="isMain">
+        <app-setting></app-setting>
       </div>
     </div>
   </div>

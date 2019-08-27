@@ -1,0 +1,131 @@
+<div class="row">
+  <div class="col-5">
+    <div class="pull-left">
+      <div class="img-thumbnail" style="border-radius:50px">
+        <button class="btn btn-default" (click)="showPublicSettings()">
+          <i style="font-size: 30px" class="fas fa-tools"></i><strong> Genel Ayarlar</strong>
+        </button>
+      </div>
+      <div class="img-thumbnail" style="border-radius:50px">
+        <button class="btn btn-default" (click)="showPhotoUpload()">
+          <i style="font-size: 30px" class="fas fa-camera"></i><strong> Profil Fotoğrafını Değiştir</strong>
+        </button>
+      </div>
+      <div class="img-thumbnail" style="border-radius:50px">
+        <button class="btn btn-default" (click)="showPasswordSetting()">
+          <i style="font-size: 30px" class="fas fa-key"></i><strong> Şifre Değiştir</strong>
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="col-7">
+    <div class="pull-right">
+      <div *ngIf="!passwordSetting && !photoSetting && !publicSetting ; else settings">
+        <div class="img-thumbnail" style="text-align: center"><i style="font-size: 40px;" class="fas fa-sync-alt"></i>
+        </div>
+      </div>
+      <ng-template #settings>
+        <div class="card">
+          <div class="card-body">
+            <div *ngIf="photoSetting">
+              <input #fileInput style="display: none" type="file" ng2FileSelect [uploader]="uploader">
+              <button class="btn btn-primary form-control" (click)="fileInput.click()"><i class="far fa-file-image"></i>
+                Resim Seç</button>
+              <div *ngFor="let item of uploader.queue">
+                <div class="form-group">
+                  <button class="btn btn-primary form-control" (click)="item.upload()"><i
+                      class="fas fa-file-upload"></i>
+                    Seçili Resmi Yükle</button>
+                </div>
+              </div>
+            </div>
+            <div *ngIf="publicSetting">
+              <form [formGroup]="publicSettingForm" (ngSubmit)="changePublicSettings()">
+                <div class="form-group">
+                  <input class="form-control" type="text" 
+                    formControlName="firstName" required placeholder="Adınız">
+                  <span class="help-block"
+                    *ngIf="publicSettingForm.get('firstName').hasError('required') && publicSettingForm.get('firstName').touched">
+                    Adınız zorunlu.
+                  </span>
+                  <span class="help-block"
+                    *ngIf="publicSettingForm.get('firstName').hasError('maxlength') && publicSettingForm.get('firstName').touched">
+                    50 karakterden fazla olamaz.
+                  </span>
+                </div>
+                <div class="form-group">
+                  <input class="form-control" type="text" 
+                    formControlName="lastName" required placeholder="Soyadınız">
+                  <span class="help-block"
+                    *ngIf="publicSettingForm.get('lastName').hasError('required') && publicSettingForm.get('lastName').touched">
+                    Soyadınız zorunlu.
+                  </span>
+                  <span class="help-block"
+                    *ngIf="publicSettingForm.get('lastName').hasError('maxlength') && publicSettingForm.get('lastName').touched">
+                    50 karakterden fazla olamaz.
+                  </span>
+                </div>
+                <div class="form-group">
+                  <input class="form-control" type="date"
+                    formControlName="birthDate" required placeholder="Doğum tarihiniz">
+                  <span class="help-block"
+                    *ngIf="publicSettingForm.get('birthDate').hasError('required') && publicSettingForm.get('birthDate').touched">
+                    Zorunlu Alan!
+                  </span>
+                </div>
+                <div class="form-group">
+                  <textarea class="form-control" formControlName="personelInfo"
+                    required placeholder="Kişisel Bilgi">
+                  </textarea>
+                  <span class="help-block"
+                    *ngIf="publicSettingForm.get('personelInfo').hasError('required') && publicSettingForm.get('personelInfo').touched">
+                    Bu alan zorunludur.
+                  </span>
+                  <span class="help-block"
+                    *ngIf="publicSettingForm.get('personelInfo').hasError('maxlength') && publicSettingForm.get('personelInfo').touched">
+                    120 karakterden fazla olamaz.
+                  </span>
+                </div>
+                <div class="form-group">
+                  <input type="submit" class="btn btn-success form-control" [disabled]="!passwordChangeForm.valid"
+                    value="Değişikliği Kaydet" />
+                </div>
+              </form>
+            </div>
+            <div *ngIf="passwordSetting">
+              <form [formGroup]="passwordChangeForm" (ngSubmit)="changePassword()">
+                <div class="form-group">
+                  <input class="form-control" type="password" formControlName="password" required
+                    placeholder="Yeni Şifre">
+                  <span class="help-block"
+                    *ngIf="passwordChangeForm.get('password').hasError('required') && passwordChangeForm.get('password').touched">
+                    Şifre zorunlu.
+                  </span>
+                  <span class="help-block"
+                    *ngIf="passwordChangeForm.get('password').hasError('maxlength') && passwordChangeForm.get('password').touched">
+                    20 karakterden fazla olamaz.
+                  </span>
+                  <span class="help-block"
+                    *ngIf="passwordChangeForm.get('password').hasError('minlength') && passwordChangeForm.get('password').touched">
+                    4 karakterden az olamaz.
+                  </span>
+                </div>
+                <div class="form-group">
+                  <input class="form-control" type="password" formControlName="confirmPassword"
+                    required placeholder="Yeni Şifre Tekrar">
+                  <span class="help-block" *ngIf="passwordChangeForm.errors?.matchingFields">
+                    Şifreler uyumlu değil!
+                  </span>
+                </div>
+                <div class="form-group">
+                  <input type="submit" class="btn btn-success form-control" [disabled]="!passwordChangeForm.valid"
+                    value="Değişikliği Kaydet" />
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </ng-template>
+    </div>
+  </div>
+</div>

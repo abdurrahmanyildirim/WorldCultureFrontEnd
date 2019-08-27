@@ -20,11 +20,27 @@ export class ProfileService {
   }
 
   getRelationStatus(userId): Observable<boolean> {
-    return this.httpClient.get<boolean>(this.baseUrl + "isFollower/" + userId, { headers: this.authService.headers });
+    return this.httpClient
+      .get<boolean>(this.baseUrl + "isFollower/" + userId, { headers: this.authService.headers });
   }
 
   changeToRelationStatus(userId) {
     return this.httpClient
       .get(this.baseUrl + "changeToRelationStatus/" + userId, { headers: this.authService.headers });
+  }
+
+  changePassword(password: any) {
+    return this.httpClient
+      .put(this.baseUrl + "changePassword", password, { headers: this.authService.headers });
+  }
+
+  changePublicSettings(publicSettings: any) {
+    return this.httpClient
+      .put("profile/changePublicInfo", publicSettings, { headers: this.authService.headers });
+  }
+
+  getPublicSettings() {
+    return this.httpClient
+      .get(this.baseUrl + "profile/getPublicInfo", { headers: this.authService.headers });
   }
 }
