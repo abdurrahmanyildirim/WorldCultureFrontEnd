@@ -1,6 +1,9 @@
 <div class="container">
   <div class="row" *ngIf="!country ; else countryDetail">
-    <div class="col-4" *ngFor="let c of countries" style="margin-top: 15px">
+    <div class="col-12" style="margin-top: 5px;">
+      <input type="text" [(ngModel)]="searchKey" class="form-control col-6" placeholder="Arama">
+    </div>
+    <div class="col-4" *ngFor="let c of countries | filterCountry : searchKey" style="margin-top: 15px">
       <div class="card" style="width:100%;height: 360px;">
         <img class="card-img-top" style="width: 100%;height:250px" src="{{c.flagPhotoPath}}" alt="{{c.countryName}}">
         <div class="card-body">
@@ -13,7 +16,8 @@
   <ng-template #countryDetail>
     <div class="row" style="margin-top: 15px;">
       <div class="col-6">
-        <img class="img-thumbnail" src="{{country.flagPhotoPath}}" style="width: 100%; height:350px;" alt="{{country.countryName}}">
+        <img class="img-thumbnail" src="{{country.flagPhotoPath}}" style="width: 100%; height:350px;"
+          alt="{{country.countryName}}">
       </div>
       <div class="col-6">
         <div class="card">

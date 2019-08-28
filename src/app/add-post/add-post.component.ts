@@ -99,12 +99,18 @@ export class AddPostComponent implements OnInit {
   getCities(countryId) {
     this.cityService.getCitiesByCountryID(countryId).subscribe(data => {
       this.cities = data;
+      this.postForm.patchValue({
+        famousPlaceID:''
+      })
     })
   }
 
   getFamousPlaces(cityId) {
     this.famousPlaceService.getFamousPlaces(cityId).subscribe(data => {
       this.famousPlaces = data;
+      this.postForm.patchValue({
+        famousPlaceID:''
+      })
     })
   }
 

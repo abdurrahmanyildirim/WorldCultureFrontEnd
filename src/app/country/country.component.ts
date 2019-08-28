@@ -17,6 +17,8 @@ export class CountryComponent implements OnInit {
 
   country: Country;
   countries: CountryForCard[];
+  searchKey:string;
+
   ngOnInit() {
     this.activatedRoute.params.subscribe(params => {
       this.fillData(params["countryId"])

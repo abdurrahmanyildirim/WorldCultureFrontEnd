@@ -10,6 +10,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { ProfileDetailComponent } from './profile/profile-detail/profile-detail.component';
 import { FollowingAccountComponent } from './followingAccount/followingAccount.component';
 import { AddPostComponent } from './add-post/add-post.component';
+import { PostDetailComponent } from './post/post-detail/post-detail.component';
 
 export const routes: Routes = [
   { path: 'countries', component: CountryComponent },
@@ -19,7 +20,7 @@ export const routes: Routes = [
   { path: 'famousPlaces/:cityID', component: FamousPlaceComponent },
   { path: 'famousPlace/:famousPlaceID', component: FamousPlaceComponent },
   { path: 'posts/:famousPlaceID', component: PostComponent },
-  { path: 'post/:postID', component: PostComponent },
+  { path: 'post/:postID', component: PostDetailComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'profile/:accountID', component: ProfileComponent },

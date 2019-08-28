@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FileUploadModule } from 'ng2-file-upload';
-
+import { FilterCountryPipe } from '../app/country/filterCountry.pipe'
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -20,6 +20,8 @@ import { FollowingAccountComponent } from './followingAccount/followingAccount.c
 import { AddPostComponent } from './add-post/add-post.component';
 import { AlertifyService } from './services/alertify.service';
 import { SettingComponent } from './setting/setting.component';
+import { from } from 'rxjs';
+import { PostDetailComponent } from './post/post-detail/post-detail.component';
 
 @NgModule({
    declarations: [
@@ -35,7 +37,9 @@ import { SettingComponent } from './setting/setting.component';
       ProfileDetailComponent,
       FollowingAccountComponent,
       AddPostComponent,
-      SettingComponent
+      SettingComponent,
+      FilterCountryPipe,
+      PostDetailComponent
    ],
    imports: [
       BrowserModule,

@@ -2,7 +2,7 @@
   <div class="row" *ngIf="!city ; else cityDetail">
     <div *ngIf="citiesForCard?.length <= 0 ; else cards" style="margin-top: 15px">
       <div class="alert alert-info">
-        Yakında...
+        Henüz veri girişi yapılmamıştır.
       </div>
     </div>
     <ng-template #cards>
