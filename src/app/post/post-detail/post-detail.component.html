@@ -39,14 +39,12 @@
         </div>
       </div>
       <div *ngIf="reviews?.length >= 0" style="margin-top: 5px;">
-        <div class="card" *ngFor="let review of reviews">
+        <div class="card" *ngFor="let review of reviews" style="margin-top: 2px">
+          <div class="card-header bg-transparent">{{review.name}}</div>
           <div class="card-body">
-            <p><strong>İsim:</strong> {{review.name}}</p>
-            <p><strong>Yorum:</strong> {{review.reviewContent}}</p>
-            <p><strong>Puan:</strong>
-              {{review.rate}}
-            </p>
+            <p class="card-text">{{review.reviewContent}}</p>
           </div>
+          <div class="card-footer bg-transparent">Puan : {{review.rate}}</div>
         </div>
       </div>
     </div>

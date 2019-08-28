@@ -4,4 +4,5 @@ export class ProfileUser {
     lastName:string;
     personelInfo:string;
     profilePhotoPath:string;
+    memberDate:Date
 }

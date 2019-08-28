@@ -1,0 +1,24 @@
+<div class="container">
+  <div class="row" style="margin-top: 15px;">
+    <div class="col-6">
+      <img class="img-thumbnail" src="{{country.flagPhotoPath}}" style="width: 100%; height:350px;"
+        alt="{{country.countryName}}">
+    </div>
+    <div class="col-6">
+      <div class="card">
+        <div class="card-body">
+          <p><strong>Ülke Adı:</strong> {{country.countryName}}</p>
+          <p><strong>Etnik Kökeni:</strong> {{country.ethnicIdentity}}</p>
+          <p><strong>Dil:</strong> {{country.language}}</p>
+          <p><strong>Başkent:</strong> {{country.capital}}</p>
+          <p><strong>Yöneticisi:</strong> {{country.president}}</p>
+          <p><strong>Nüfus:</strong> {{country.population}}</p>
+          <p><strong>Para Birimi:</strong> {{country.currency}}</p>
+          <p><strong>Kuruluş Yılı:</strong> {{country.foundedDate | date:'fullDate'}}</p>
+          <p><strong>Özet Bilgi:</strong> {{country.summaryInfo}}</p>
+          <a class="btn btn-primary" routerLink="/cities/{{country.countryID}}">Şehirleri İncele</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,22 +1,15 @@
 <div class="row">
-  <div class="col-5">
-    <div class="pull-left">
-      <div class="img-thumbnail" style="border-radius:50px">
-        <button class="btn btn-default" (click)="showPublicSettings()">
-          <i style="font-size: 30px" class="fas fa-tools"></i><strong> Genel Ayarlar</strong>
-        </button>
-      </div>
-      <div class="img-thumbnail" style="border-radius:50px">
-        <button class="btn btn-default" (click)="showPhotoUpload()">
-          <i style="font-size: 30px" class="fas fa-camera"></i><strong> Profil Fotoğrafını Değiştir</strong>
-        </button>
-      </div>
-      <div class="img-thumbnail" style="border-radius:50px">
-        <button class="btn btn-default" (click)="showPasswordSetting()">
-          <i style="font-size: 30px" class="fas fa-key"></i><strong> Şifre Değiştir</strong>
-        </button>
-      </div>
-    </div>
+  <div class="col-2">
+    <button style="background-color: white;border-radius: 50px;" class="btn btn-default" (click)="showPublicSettings()">
+      <i style="font-size: 30px" class="fas fa-tools"></i>
+    </button>
+    <button style="background-color: white;border-radius: 50px;" class="btn btn-default" (click)="showPhotoUpload()">
+      <i style="font-size: 30px" class="fas fa-camera"></i>
+    </button>
+    <button style="background-color: white;border-radius: 50px;" class="btn btn-default"
+      (click)="showPasswordSetting()">
+      <i style="font-size: 30px" class="fas fa-key"></i>
+    </button>
   </div>
   <div class="col-7">
     <div class="pull-right">
@@ -42,8 +35,7 @@
             <div *ngIf="publicSetting">
               <form [formGroup]="publicSettingForm" (ngSubmit)="changePublicSettings()">
                 <div class="form-group">
-                  <input class="form-control" type="text" 
-                    formControlName="firstName" required placeholder="Adınız">
+                  <input class="form-control" type="text" formControlName="firstName" required placeholder="Adınız">
                   <span class="help-block"
                     *ngIf="publicSettingForm.get('firstName').hasError('required') && publicSettingForm.get('firstName').touched">
                     Adınız zorunlu.
@@ -54,8 +46,7 @@
                   </span>
                 </div>
                 <div class="form-group">
-                  <input class="form-control" type="text" 
-                    formControlName="lastName" required placeholder="Soyadınız">
+                  <input class="form-control" type="text" formControlName="lastName" required placeholder="Soyadınız">
                   <span class="help-block"
                     *ngIf="publicSettingForm.get('lastName').hasError('required') && publicSettingForm.get('lastName').touched">
                     Soyadınız zorunlu.
@@ -66,16 +57,15 @@
                   </span>
                 </div>
                 <div class="form-group">
-                  <input class="form-control" type="date"
-                    formControlName="birthDate" required placeholder="Doğum tarihiniz">
+                  <input class="form-control" type="date" formControlName="birthDate" required
+                    placeholder="Doğum tarihiniz">
                   <span class="help-block"
                     *ngIf="publicSettingForm.get('birthDate').hasError('required') && publicSettingForm.get('birthDate').touched">
                     Zorunlu Alan!
                   </span>
                 </div>
                 <div class="form-group">
-                  <textarea class="form-control" formControlName="personelInfo"
-                    required placeholder="Kişisel Bilgi">
+                  <textarea class="form-control" formControlName="personelInfo" required placeholder="Kişisel Bilgi">
                   </textarea>
                   <span class="help-block"
                     *ngIf="publicSettingForm.get('personelInfo').hasError('required') && publicSettingForm.get('personelInfo').touched">
@@ -111,8 +101,8 @@
                   </span>
                 </div>
                 <div class="form-group">
-                  <input class="form-control" type="password" formControlName="confirmPassword"
-                    required placeholder="Yeni Şifre Tekrar">
+                  <input class="form-control" type="password" formControlName="confirmPassword" required
+                    placeholder="Yeni Şifre Tekrar">
                   <span class="help-block" *ngIf="passwordChangeForm.errors?.matchingFields">
                     Şifreler uyumlu değil!
                   </span>

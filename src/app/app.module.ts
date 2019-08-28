@@ -22,6 +22,9 @@ import { AlertifyService } from './services/alertify.service';
 import { SettingComponent } from './setting/setting.component';
 import { from } from 'rxjs';
 import { PostDetailComponent } from './post/post-detail/post-detail.component';
+import { CityDetailComponent } from './city/city-detail/city-detail.component';
+import { FamousPlaceDetailComponent } from './famous-place/famous-place-detail/famous-place-detail.component';
+import { CountryDetailComponent } from './country/country-detail/country-detail.component';
 
 @NgModule({
    declarations: [
@@ -39,7 +42,10 @@ import { PostDetailComponent } from './post/post-detail/post-detail.component';
       AddPostComponent,
       SettingComponent,
       FilterCountryPipe,
-      PostDetailComponent
+      PostDetailComponent,
+      CityDetailComponent,
+      FamousPlaceDetailComponent,
+      CountryDetailComponent
    ],
    imports: [
       BrowserModule,

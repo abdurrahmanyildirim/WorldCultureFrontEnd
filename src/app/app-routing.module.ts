@@ -11,14 +11,17 @@ import { ProfileDetailComponent } from './profile/profile-detail/profile-detail.
 import { FollowingAccountComponent } from './followingAccount/followingAccount.component';
 import { AddPostComponent } from './add-post/add-post.component';
 import { PostDetailComponent } from './post/post-detail/post-detail.component';
+import { CountryDetailComponent } from './country/country-detail/country-detail.component';
+import { CityDetailComponent } from './city/city-detail/city-detail.component';
+import { FamousPlaceDetailComponent } from './famous-place/famous-place-detail/famous-place-detail.component';
 
 export const routes: Routes = [
   { path: 'countries', component: CountryComponent },
-  { path: 'country/:countryId', component: CountryComponent },
+  { path: 'country/:countryId', component: CountryDetailComponent },
   { path: 'cities/:countryID', component: CityComponent },
-  { path: 'city/:cityID', component: CityComponent },
+  { path: 'city/:cityID', component: CityDetailComponent },
   { path: 'famousPlaces/:cityID', component: FamousPlaceComponent },
-  { path: 'famousPlace/:famousPlaceID', component: FamousPlaceComponent },
+  { path: 'famousPlace/:famousPlaceID', component: FamousPlaceDetailComponent },
   { path: 'posts/:famousPlaceID', component: PostComponent },
   { path: 'post/:postID', component: PostDetailComponent },
   { path: 'login', component: LoginComponent },

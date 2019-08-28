@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
 import { CountryService } from '../services/country.service';
-import { Country } from '../models/country';
 import { CountryForCard } from '../models/countryForCard';
 
 @Component({
@@ -12,31 +10,20 @@ import { CountryForCard } from '../models/countryForCard';
 })
 export class CountryComponent implements OnInit {
 
-  constructor(private activatedRoute: ActivatedRoute
-    , private countryService: CountryService) { }
+  constructor(private countryService: CountryService) { }
 
-  country: Country;
   countries: CountryForCard[];
-  searchKey:string;
+  searchKey: string;
 
   ngOnInit() {
-    this.activatedRoute.params.subscribe(params => {
-      this.fillData(params["countryId"])
-    })
+    this.getCountries();
   }
 
+  getCountries() {
+    this.countryService.getCountries().subscribe(data => {
+      this.countries = data;
+    })
 
-
-  fillData(countryId) {
-    if (countryId) {
-      this.countryService.getCountryById(countryId).subscribe(data => {
-        this.country = data;
-      })
-    } else {
-      this.countryService.getCountries().subscribe(data => {
-        this.countries = data;
-      })
-    }
   }
 
 }

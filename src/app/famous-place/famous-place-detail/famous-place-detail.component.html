@@ -1,0 +1,18 @@
+<div class="container">
+  <div class="row" style="margin-top: 15px;">
+    <div class="col-6">
+      <img class="img-thumbnail" src="{{famousPlace.photoPath}}" style="width: 100%; height:400px;"
+        alt="{{famousPlace.placeName}}">
+    </div>
+    <div class="col-6">
+      <div class="card">
+        <div class="card-body">
+          <p><strong>Mekan Adı:</strong> {{famousPlace.placeName}}</p>
+          <p><strong>Özet Bilgi:</strong> {{famousPlace.description}}</p>
+          <a class="btn btn-primary" routerLink="/posts/{{famousPlace.famousPlaceID}}">{{famousPlace.placeName}}'da
+            Yapılan Paylaşımlar</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
