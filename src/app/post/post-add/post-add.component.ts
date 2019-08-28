@@ -1,25 +1,24 @@
-import { Component, OnInit} from '@angular/core';
-import { CountryForCard } from '../models/countryForCard';
-import { CityForCard } from '../models/cityForCard';
-import { FamousPlaceForCard } from '../models/famousPlaceForCard';
-import { CountryService } from '../services/country.service';
-import { FamousPlaceService } from '../services/famous-place.service';
-import { CityService } from '../services/city.service';
-import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
-import { AuthService } from '../services/auth.service';
-import { PostService } from '../services/post.service';
-import { FileUploader } from 'ng2-file-upload';
-import { Photo } from '../models/photo';
+import { Component, OnInit } from '@angular/core';
+import { CountryService } from 'src/app/services/country.service';
+import { CityService } from 'src/app/services/city.service';
+import { FamousPlaceService } from 'src/app/services/famous-place.service';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AuthService } from 'src/app/services/auth.service';
+import { PostService } from 'src/app/services/post.service';
 import { Router } from '@angular/router';
-import { AlertifyService } from '../services/alertify.service';
+import { AlertifyService } from 'src/app/services/alertify.service';
+import { CountryForCard } from 'src/app/models/countryForCard';
+import { CityForCard } from 'src/app/models/cityForCard';
+import { FamousPlaceForCard } from 'src/app/models/famousPlaceForCard';
+import { FileUploader } from 'ng2-file-upload';
+import { Photo } from 'src/app/models/photo';
 
 @Component({
-  selector: 'app-add-post',
-  templateUrl: './add-post.component.html',
-  styleUrls: ['./add-post.component.css'],
-  providers: [PostService]
+  selector: 'app-post-add',
+  templateUrl: './post-add.component.html',
+  styleUrls: ['./post-add.component.css']
 })
-export class AddPostComponent implements OnInit {
+export class PostAddComponent implements OnInit {
 
   constructor(private countryService: CountryService,
     private cityService: CityService,

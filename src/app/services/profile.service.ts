@@ -15,6 +15,14 @@ export class ProfileService {
 
   baseUrl: string = "https://localhost:44303/api/";
 
+  getFollowers(userId): Observable<ProfileUser[]> {
+    return this.httpClient.get<ProfileUser[]>(this.baseUrl + "profile/followers/" + userId);
+  }
+
+  getFollowings(userId): Observable<ProfileUser[]> {
+    return this.httpClient.get<ProfileUser[]>(this.baseUrl + "profile/followings/" + userId);
+  }
+
   getUserData(userId): Observable<ProfileUser> {
     return this.httpClient.get<ProfileUser>(this.baseUrl + "profile/" + userId);
   }

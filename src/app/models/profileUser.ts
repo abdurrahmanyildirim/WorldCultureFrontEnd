@@ -5,4 +5,6 @@ export class ProfileUser {
     personelInfo:string;
     profilePhotoPath:string;
     memberDate:Date
+    followers:string;
+    followings:string;
 }

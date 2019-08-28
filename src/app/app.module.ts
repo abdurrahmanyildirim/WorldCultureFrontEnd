@@ -17,7 +17,6 @@ import { RegisterComponent } from './register/register.component';
 import { ProfileComponent } from './profile/profile.component';
 import { ProfileDetailComponent } from './profile/profile-detail/profile-detail.component';
 import { FollowingAccountComponent } from './followingAccount/followingAccount.component';
-import { AddPostComponent } from './add-post/add-post.component';
 import { AlertifyService } from './services/alertify.service';
 import { SettingComponent } from './setting/setting.component';
 import { from } from 'rxjs';
@@ -25,6 +24,8 @@ import { PostDetailComponent } from './post/post-detail/post-detail.component';
 import { CityDetailComponent } from './city/city-detail/city-detail.component';
 import { FamousPlaceDetailComponent } from './famous-place/famous-place-detail/famous-place-detail.component';
 import { CountryDetailComponent } from './country/country-detail/country-detail.component';
+import { PostAddComponent } from './post/post-add/post-add.component';
+import { ProfileRelationComponent } from './profile/profile-relation/profile-relation.component';
 
 @NgModule({
    declarations: [
@@ -39,13 +40,14 @@ import { CountryDetailComponent } from './country/country-detail/country-detail.
       ProfileComponent,
       ProfileDetailComponent,
       FollowingAccountComponent,
-      AddPostComponent,
       SettingComponent,
       FilterCountryPipe,
       PostDetailComponent,
       CityDetailComponent,
       FamousPlaceDetailComponent,
-      CountryDetailComponent
+      CountryDetailComponent,
+      PostAddComponent,
+      ProfileRelationComponent
    ],
    imports: [
       BrowserModule,

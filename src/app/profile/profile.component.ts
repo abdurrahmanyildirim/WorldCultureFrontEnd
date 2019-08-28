@@ -48,8 +48,17 @@ export class ProfileComponent implements OnInit {
 
   changeToRelationStatus() {
     if (this.isAuthenticate) {
-      this.profileService.changeToRelationStatus(this.routeId).subscribe();
-      this.router.navigateByUrl('/profile/' + this.routeId);
+      this.profileService.changeToRelationStatus(this.routeId)
+      .subscribe(data=>{
+        this.router.navigateByUrl('/profile/' + this.routeId);
+      });
+      
+      if(this.followButton==="Takip Et"){
+        this.alertifyService.success("Takip ettiniz.")
+      }else {
+        this.alertifyService.error("Takipten çıktınız.")
+      }
+
     } else {
       this.alertifyService.error("Sisteme giriş yapmalısınız.")
       this.router.navigateByUrl('/login');

@@ -9,11 +9,12 @@ import { RegisterComponent } from './register/register.component';
 import { ProfileComponent } from './profile/profile.component';
 import { ProfileDetailComponent } from './profile/profile-detail/profile-detail.component';
 import { FollowingAccountComponent } from './followingAccount/followingAccount.component';
-import { AddPostComponent } from './add-post/add-post.component';
 import { PostDetailComponent } from './post/post-detail/post-detail.component';
 import { CountryDetailComponent } from './country/country-detail/country-detail.component';
 import { CityDetailComponent } from './city/city-detail/city-detail.component';
 import { FamousPlaceDetailComponent } from './famous-place/famous-place-detail/famous-place-detail.component';
+import { PostAddComponent } from './post/post-add/post-add.component';
+import { ProfileRelationComponent } from './profile/profile-relation/profile-relation.component';
 
 export const routes: Routes = [
   { path: 'countries', component: CountryComponent },
@@ -28,9 +29,10 @@ export const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'profile/:accountID', component: ProfileComponent },
   { path: 'profileDetail/:accountID', component: ProfileDetailComponent },
+  { path: 'relations/:accountID', component: ProfileRelationComponent },
   { path: '', component: CountryComponent },
   { path: 'followings', component: FollowingAccountComponent },
-  { path: 'addPost', component: AddPostComponent },
+  { path: 'post-add', component: PostAddComponent },
   { path: '**', redirectTo: 'countries', pathMatch: 'full' }
 ];
 

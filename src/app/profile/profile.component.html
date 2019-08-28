@@ -4,19 +4,20 @@
       <div class="card mb-3" style="max-width: 540px;">
         <div class="row no-gutters">
           <div class="col-md-4">
-            <div *ngIf="!account.profilePhotoPath ; else image">
-                <i style="font-size: 180px" class="fas fa-user"></i>
-            </div>
-            <ng-template #image>
-              <img src="{{account.profilePhotoPath}}" class="card-img" alt="{{account.firstName}}"
-               style="height: 150px">
-            </ng-template>
+            <img src="{{account.profilePhotoPath}}" class="card-img" alt="{{account.firstName}}" style="height: 150px">
+            <p style="margin-left: 5px;">
+              <strong><a style="color:black" routerLink="/relations/{{account.accountID}}"> {{account.followers}}
+                  Takipçi </a></strong><br>
+              <strong><a style="color:black" routerLink="/relations/{{account.accountID}}">{{account.followings}} Takip
+                  Edilen </a></strong>
+            </p>
           </div>
           <div class="col-md-8">
             <div class="card-body">
               <h5 class="card-title">{{account.firstName}} {{account.lastName}}</h5>
               <p class="card-text">{{account.personelInfo}} </p>
-              <p class="card-text"><small class="text-muted">{{account.memberDate | date:'fullDate'}} tarihinde üye oldu.</small></p>
+              <p class="card-text"><small class="text-muted">{{account.memberDate | date:'fullDate'}} tarihinde
+                  katıldı.</small></p>
               <div class="form-group">
                 <a class="btn btn-primary form-control" routerLink="/profileDetail/{{account.accountID}}">Paylaşımları
                   İncele</a>
@@ -31,30 +32,6 @@
           </div>
         </div>
       </div>
-      <!-- <div class="card">
-        <div class="card-body">
-          <div *ngIf="!account.profilePhotoPath ; else image">
-            <i style="font-size: 210px;border-radius: 50%;width: 100%" class="fas fa-user-circle"></i>
-          </div>
-          <ng-template #image>
-            <img class="img-thumbnail pull-left" src="{{account.profilePhotoPath}}" alt="{{account.firstName}}"
-              style="width: 100%; height:150px;border-radius: 50%;padding: 0;margin: 0;">
-          </ng-template>
-          <br>
-          <strong>{{account.firstName}} {{account.lastName}}</strong>
-          <p>{{account.personelInfo}}</p>
-          <div class="form-group">
-            <a class="btn btn-primary form-control" routerLink="/profileDetail/{{account.accountID}}">Paylaşımları
-              İncele</a>
-          </div>
-          <div *ngIf="!isMain">
-            <div class="form-group">
-              <input type="button" class="btn btn-warning form-control" (click)="changeToRelationStatus()"
-                value="{{followButton}}">
-            </div>
-          </div>
-        </div>
-      </div> -->
     </div>
     <div class="col-7">
       <div *ngIf="isMain">
