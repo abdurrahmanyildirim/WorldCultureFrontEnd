@@ -7,9 +7,9 @@
       <div class="col-7">
         <div class="card-header"><strong>{{post.title | uppercase}} </strong></div>
         <div class="card-body">
-          <p class="card-text">
-            {{post.description}}
+          <p class="card-text" [innerHtml]="post.description">
           </p>
+          <hr>
           <a class="btn btn-primary" routerLink="/profile/{{post.accountID}}">Paylaşan Hesabı İncele</a>
         </div>
       </div>
@@ -24,8 +24,15 @@
         <div class="card-body">
           <form [formGroup]="reviewForm" (ngSubmit)="sendReview()">
             <div class="form-group">
-              <p><strong>İsim: </strong> <input required name="name" formControlName="name" type="text"
-                  class="form-control"></p>
+              <p><strong>İsim: </strong> <input required formControlName="name" type="text" class="form-control"></p>
+              <span class="help-block"
+                *ngIf="reviewForm.get('name').hasError('required') && reviewForm.get('name').touched">
+                Bu alan boş bırakılamaz.
+              </span>
+              <span class="help-block"
+                *ngIf="reviewForm.get('name').hasError('maxlength') && reviewForm.get('name').touched">
+                30 karakterden fazla olamaz.
+              </span>
             </div>
             <div class="form-group">
               <p><strong>Puan:</strong>
@@ -40,6 +47,14 @@
             <div class="form-group">
               <textarea class="form-control" name="reviewContent" formControlName="reviewContent"
                 placeholder="Yorum Yaz"></textarea>
+              <span class="help-block"
+                *ngIf="reviewForm.get('reviewContent').hasError('required') && reviewForm.get('reviewContent').touched">
+                Bu alan boş bırakılamaz.
+              </span>
+              <span class="help-block"
+                *ngIf="reviewForm.get('reviewContent').hasError('maxlength') && reviewForm.get('reviewContent').touched">
+                300 karakterden fazla olamaz.
+              </span>
             </div>
             <div class="form-group">
               <input type="submit" class="btn btn-success form-control" [disabled]="!reviewForm.valid" value="Gönder">
@@ -50,68 +65,22 @@
     </div>
     <div class="col-7">
       <div *ngIf="reviews?.length >= 0" style="margin-top: 5px;">
-        <div class="card" *ngFor="let review of reviews" style="margin-top: 2px">
-          <div class="card-header bg-transparent">{{review.name}}</div>
-          <div class="card-body">
-            <p class="card-text text-success">{{review.reviewContent}}</p>
+        <div class="card" style="padding: 3px 2px 2px 2px">
+          <div class="card-header">
+            Yorumlar
           </div>
-          <div class="card-footer bg-transparent">Puan : {{review.rate}}</div>
+          <div class="card-body">
+            <div class="card pull-left" *ngFor="let review of reviews">
+              <div class="card-header">
+                {{review.name}} - {{review.rate}} Puan
+              </div>
+              <div class="card-body">
+                <p class="card-text text-success">{{review.reviewContent}}</p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </div>
 </div>
-
-
-<!-- <div class="container">
-  <div class="row" style="margin-top: 15px;">
-    <div class="col-6">
-      <img class="img-thumbnail" src="{{post.postPhotoPath}}" style="width: 100%; height:400px;" alt="{{post.title}}">
-      <div *ngIf="isAuthenticate" class="card" style="margin-top: 5px">
-        <div class="card-body">
-          <form [formGroup]="reviewForm" (ngSubmit)="sendReview()">
-            <div class="form-group">
-              <p><strong>İsim: </strong> <input required name="name" formControlName="name" type="text"
-                  class="form-control"></p>
-            </div>
-            <div class="form-group">
-              <p><strong>Puan:</strong>
-                <select class="form-control" name="rate" formControlName="rate" required>
-                  <option>1</option>
-                  <option>2</option>
-                  <option>3</option>
-                  <option>4</option>
-                  <option>5</option>
-                </select></p>
-            </div>
-            <div class="form-group">
-              <textarea class="form-control" name="reviewContent" formControlName="reviewContent"
-                placeholder="Yorum Yaz"></textarea>
-            </div>
-            <div class="form-group">
-              <input type="submit" class="btn btn-success form-control" [disabled]="!reviewForm.valid" value="Gönder">
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
-    <div class="col-6">
-      <div class="card">
-        <div class="card-body">
-          <p><strong>Başlık:</strong> {{post.title}}</p>
-          <p><strong>İçerik:</strong> {{post.description}}</p>
-          <a class="btn btn-primary" routerLink="/profile/{{post.accountID}}">Paylaşan Hesabı İncele</a>
-        </div>
-      </div>
-      <div *ngIf="reviews?.length >= 0" style="margin-top: 5px;">
-        <div class="card" *ngFor="let review of reviews" style="margin-top: 2px">
-          <div class="card-header bg-transparent">{{review.name}}</div>
-          <div class="card-body">
-            <p class="card-text">{{review.reviewContent}}</p>
-          </div>
-          <div class="card-footer bg-transparent">Puan : {{review.rate}}</div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div> -->

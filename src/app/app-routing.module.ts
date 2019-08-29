@@ -18,7 +18,7 @@ import { ProfileRelationComponent } from './profile/profile-relation/profile-rel
 
 export const routes: Routes = [
   { path: 'countries', component: CountryComponent },
-  { path: 'country/:countryId', component: CountryDetailComponent },
+  { path: 'country/:countryID', component: CountryDetailComponent },
   { path: 'cities/:countryID', component: CityComponent },
   { path: 'city/:cityID', component: CityDetailComponent },
   { path: 'famousPlaces/:cityID', component: FamousPlaceComponent },

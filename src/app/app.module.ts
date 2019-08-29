@@ -1,11 +1,17 @@
+//Modules
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FileUploadModule } from 'ng2-file-upload';
-import { FilterCountryPipe } from '../app/country/filterCountry.pipe'
-
+import { NgxEditorModule } from 'ngx-editor';
 import { AppRoutingModule } from './app-routing.module';
+import { AlertifyService } from './services/alertify.service';
+
+//Pipes
+import { FilterCountryPipe } from '../app/country/filterCountry.pipe';
+
+//Components
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { CountryComponent } from './country/country.component';
@@ -17,7 +23,6 @@ import { RegisterComponent } from './register/register.component';
 import { ProfileComponent } from './profile/profile.component';
 import { ProfileDetailComponent } from './profile/profile-detail/profile-detail.component';
 import { FollowingAccountComponent } from './followingAccount/followingAccount.component';
-import { AlertifyService } from './services/alertify.service';
 import { SettingComponent } from './setting/setting.component';
 import { from } from 'rxjs';
 import { PostDetailComponent } from './post/post-detail/post-detail.component';
@@ -55,7 +60,8 @@ import { ProfileRelationComponent } from './profile/profile-relation/profile-rel
       HttpClientModule,
       FormsModule,
       ReactiveFormsModule,
-      FileUploadModule
+      FileUploadModule,
+      NgxEditorModule
    ],
    providers: [
       AlertifyService

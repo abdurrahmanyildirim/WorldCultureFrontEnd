@@ -1,5 +1,5 @@
 export class City{
-    cityId:number;
+    cityID:number;
     cityName:string;
     population:string;
     description:string;

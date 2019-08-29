@@ -3,8 +3,9 @@ import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms'
 import { FileUploader } from 'ng2-file-upload';
 import { AlertifyService } from '../services/alertify.service';
 import { ProfileService } from '../services/profile.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { PublicSettingUser } from '../models/publicSettingUser';
+import { ProfileComponent } from '../profile/profile.component';
 
 @Component({
   selector: 'app-setting',
@@ -16,7 +17,8 @@ export class SettingComponent implements OnInit {
   constructor(private fb: FormBuilder,
     private alertifyService: AlertifyService,
     private profileService: ProfileService,
-    private router: Router) { }
+    private profileComponent: ProfileComponent,
+    private activatedRoute: ActivatedRoute) { }
 
   passwordSetting: boolean = false;
   photoSetting: boolean = false;
@@ -34,9 +36,11 @@ export class SettingComponent implements OnInit {
   passwordObject: any = {};
 
   ngOnInit() {
-    this.createPasswordChangeForm();
-    this.createPublicSettingForm();
-    this.initializeUploader();
+    this.activatedRoute.params.subscribe(params => {
+      this.createPasswordChangeForm();
+      this.createPublicSettingForm();
+      this.initializeUploader(params["accountID"]);
+    })
   }
 
   showPublicSettings() {
@@ -44,10 +48,10 @@ export class SettingComponent implements OnInit {
       this.accountPublicInfo = data as PublicSettingUser;
     })
     this.publicSettingForm.patchValue({
-      firstName:this.accountPublicInfo.firstName,
-      lastName:this.accountPublicInfo.lastName,
-      birthDate:this.accountPublicInfo.birthDate,
-      personelInfo:this.accountPublicInfo.personelInfo,
+      firstName: this.accountPublicInfo.firstName,
+      lastName: this.accountPublicInfo.lastName,
+      birthDate: this.accountPublicInfo.birthDate,
+      personelInfo: this.accountPublicInfo.personelInfo,
     });
 
     this.photoSetting = false;
@@ -86,13 +90,7 @@ export class SettingComponent implements OnInit {
     }
   }
 
-  reloadComponent() {
-    this.router.routeReuseStrategy.shouldReuseRoute = () => false;
-    this.router.onSameUrlNavigation = 'reload';
-    this.router.navigate(['/same-route']);
-  }
-
-  initializeUploader() {
+  initializeUploader(userId) {
     this.uploader = new FileUploader({
       url: this.baseUrl + 'profile/changeProfilePhoto',
       authToken: 'Bearer ' + localStorage.getItem('token'),
@@ -102,10 +100,9 @@ export class SettingComponent implements OnInit {
       removeAfterUpload: true,
       maxFileSize: 10 * 1024 * 1024
     })
-    //Todo: Burada ki route düzeltilecek.
     this.uploader.onSuccessItem = (item, response, status, headers) => {
       this.alertifyService.success("Fotoğraf değiştirildi.");
-      this.router.navigate(['/same-route']);
+      this.profileComponent.getAccountData(userId);
     }
   }
 
@@ -128,6 +125,7 @@ export class SettingComponent implements OnInit {
       this.passwordObject = Object.assign({}, this.passwordChangeForm.value)
       this.profileService.changePassword(this.passwordObject).subscribe(data => {
         this.alertifyService.success("Şifre değiştirildi.")
+        this.passwordChangeForm.reset();
       })
     }
   }

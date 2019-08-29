@@ -1,17 +1,21 @@
 import { Component, OnInit } from '@angular/core';
-import { CountryService } from 'src/app/services/country.service';
-import { CityService } from 'src/app/services/city.service';
-import { FamousPlaceService } from 'src/app/services/famous-place.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { FileUploader } from 'ng2-file-upload';
+
+//Models
+import { Photo } from 'src/app/models/photo';
+import { CityForCard } from 'src/app/models/cityForCard';
+import { CountryForCard } from 'src/app/models/countryForCard';
+import { FamousPlaceForCard } from 'src/app/models/famousPlaceForCard';
+
+//Services
+import { FamousPlaceService } from 'src/app/services/famous-place.service';
+import { CityService } from 'src/app/services/city.service';
+import { CountryService } from 'src/app/services/country.service';
 import { AuthService } from 'src/app/services/auth.service';
 import { PostService } from 'src/app/services/post.service';
-import { Router } from '@angular/router';
 import { AlertifyService } from 'src/app/services/alertify.service';
-import { CountryForCard } from 'src/app/models/countryForCard';
-import { CityForCard } from 'src/app/models/cityForCard';
-import { FamousPlaceForCard } from 'src/app/models/famousPlaceForCard';
-import { FileUploader } from 'ng2-file-upload';
-import { Photo } from 'src/app/models/photo';
 
 @Component({
   selector: 'app-post-add',
@@ -26,8 +30,8 @@ export class PostAddComponent implements OnInit {
     private formBuilder: FormBuilder,
     private authService: AuthService,
     private postService: PostService,
-    private router:Router,
-    private alertifyService:AlertifyService) { }
+    private router: Router,
+    private alertifyService: AlertifyService) { }
 
   countries: CountryForCard[];
   cities: CityForCard[];
@@ -41,9 +45,17 @@ export class PostAddComponent implements OnInit {
 
 
   ngOnInit() {
-    this.createPostForm();
-    this.getCountries();
-    this.initializeUploader();
+    if(this.isAuthenticate){
+      this.createPostForm();
+      this.getCountries();
+      this.getCities(1);
+      this.getFamousPlaces(1);
+      this.initializeUploader();
+    }else{
+      this.router.navigateByUrl('/login');
+      this.alertifyService.error("İzinsiz giriş tespit edildi!");
+    }
+    
   }
 
   createPostForm() {
@@ -52,7 +64,7 @@ export class PostAddComponent implements OnInit {
       famousPlaceID: ['', Validators.required],
       postPhotoPath: ['', Validators.required],
       publicId: ['', Validators.required],
-      description: ['', [Validators.required, Validators.maxLength(300)]],
+      description: ['', [Validators.required, Validators.maxLength(500)]],
       title: ['', [Validators.required, Validators.maxLength(30)]]
     });
   }
@@ -61,8 +73,8 @@ export class PostAddComponent implements OnInit {
     if (this.postForm.valid) {
       this.post = Object.assign({}, this.postForm.value)
       this.postService.addPost(this.post);
+      this.postForm.reset();
       this.alertifyService.success("Post paylaşımı başarılı.");
-      this.router.navigateByUrl("/countries");
     }
   }
 
@@ -99,7 +111,7 @@ export class PostAddComponent implements OnInit {
     this.cityService.getCitiesByCountryID(countryId).subscribe(data => {
       this.cities = data;
       this.postForm.patchValue({
-        famousPlaceID:''
+        famousPlaceID: ''
       })
     })
   }
@@ -108,9 +120,13 @@ export class PostAddComponent implements OnInit {
     this.famousPlaceService.getFamousPlaces(cityId).subscribe(data => {
       this.famousPlaces = data;
       this.postForm.patchValue({
-        famousPlaceID:''
+        famousPlaceID: ''
       })
     })
+  }
+
+  get isAuthenticate(){
+    return this.authService.loggedIn();
   }
 
 }

@@ -16,7 +16,7 @@ export class ProfileComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private authService: AuthService,
     private router: Router,
-    private alertifyService:AlertifyService
+    private alertifyService: AlertifyService
   ) { }
 
   account: ProfileUser;
@@ -49,16 +49,18 @@ export class ProfileComponent implements OnInit {
   changeToRelationStatus() {
     if (this.isAuthenticate) {
       this.profileService.changeToRelationStatus(this.routeId)
-      .subscribe(data=>{
-        this.router.navigateByUrl('/profile/' + this.routeId);
-      });
-      
-      if(this.followButton==="Takip Et"){
-        this.alertifyService.success("Takip ettiniz.")
-      }else {
-        this.alertifyService.error("Takipten çıktınız.")
-      }
+        .subscribe(data => {
+          this.router.navigateByUrl('/profile/' + this.routeId);
+        });
 
+      if (this.followButton === "Takip Et") {
+        this.alertifyService.success("Takip ettiniz.")
+        this.followButton = "Takipten Çık";
+      } else {
+        this.alertifyService.error("Takipten çıktınız.")
+        this.followButton = "Takip Et"
+      }
+      this.getAccountData(this.routeId);
     } else {
       this.alertifyService.error("Sisteme giriş yapmalısınız.")
       this.router.navigateByUrl('/login');

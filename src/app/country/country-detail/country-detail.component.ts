@@ -17,7 +17,7 @@ export class CountryDetailComponent implements OnInit {
 
   ngOnInit() {
     this.activatedRoute.params.subscribe(params=>{
-      this.getCountry(params["countryId"]);
+      this.getCountry(params["countryID"]);
     })
   }
 
