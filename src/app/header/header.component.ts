@@ -8,21 +8,25 @@ import { AuthService } from '../services/auth.service';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor(private authService:AuthService) { }
+  constructor(private authService: AuthService) { }
 
-  currentAccountId:number;
+  accountID: number;
 
   ngOnInit() {
-    if(this.isAuthenticate){
-      this.currentAccountId=this.authService.getCurrentAccountId();
+    if (this.isAuthenticate) {
+      this.accountID = this.authService.getCurrentAccountId();
     }
   }
 
-  get isAuthenticate(){
+  fillCurrentId() {
+    this.accountID = this.authService.getCurrentAccountId();
+  }
+
+  get isAuthenticate() {
     return this.authService.loggedIn();
   }
 
-  logOut(){
+  logOut() {
     this.authService.logOut();
   }
 

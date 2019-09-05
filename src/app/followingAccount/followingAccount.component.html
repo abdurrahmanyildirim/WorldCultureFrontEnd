@@ -7,10 +7,15 @@
     </div>
     <ng-template #posts>
       <div class="col-4" *ngFor="let p of followingPosts" style="margin-top: 15px">
-        <div class="card" style="width:100%;height: 360px;">
+        <div class="card" style="width:100%">
           <img class="card-img-top" style="width: 100%;height:250px" src="{{p.postPhotoPath}}" alt="{{p.title}}">
           <div class="card-body">
             <h5 class="card-title">{{p.title}}</h5>
+            <p class="card-text">
+              <small class="text-muted">{{p.countOfView}} Görüntüleme</small>
+              <br>
+              <small class="text-muted">Yorum Puan Ortalaması = {{p.rate}} </small>
+            </p>
             <a class="form-control btn btn-primary" routerLink="/post/{{p.postID}}">İncele</a>
           </div>
         </div>

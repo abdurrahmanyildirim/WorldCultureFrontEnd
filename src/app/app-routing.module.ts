@@ -15,6 +15,7 @@ import { CityDetailComponent } from './city/city-detail/city-detail.component';
 import { FamousPlaceDetailComponent } from './famous-place/famous-place-detail/famous-place-detail.component';
 import { PostAddComponent } from './post/post-add/post-add.component';
 import { ProfileRelationComponent } from './profile/profile-relation/profile-relation.component';
+import { ExploreComponent } from './explore/explore.component';
 
 export const routes: Routes = [
   { path: 'countries', component: CountryComponent },
@@ -31,6 +32,7 @@ export const routes: Routes = [
   { path: 'profileDetail/:accountID', component: ProfileDetailComponent },
   { path: 'relations/:accountID', component: ProfileRelationComponent },
   { path: '', component: CountryComponent },
+  { path: 'explore', component: ExploreComponent },
   { path: 'followings', component: FollowingAccountComponent },
   { path: 'post-add', component: PostAddComponent },
   { path: '**', redirectTo: 'countries', pathMatch: 'full' }

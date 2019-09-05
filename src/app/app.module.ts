@@ -31,6 +31,8 @@ import { FamousPlaceDetailComponent } from './famous-place/famous-place-detail/f
 import { CountryDetailComponent } from './country/country-detail/country-detail.component';
 import { PostAddComponent } from './post/post-add/post-add.component';
 import { ProfileRelationComponent } from './profile/profile-relation/profile-relation.component';
+import { FooterComponent } from './footer/footer.component';
+import { ExploreComponent } from './explore/explore.component';
 
 @NgModule({
    declarations: [
@@ -52,7 +54,9 @@ import { ProfileRelationComponent } from './profile/profile-relation/profile-rel
       FamousPlaceDetailComponent,
       CountryDetailComponent,
       PostAddComponent,
-      ProfileRelationComponent
+      ProfileRelationComponent,
+      FooterComponent,
+      ExploreComponent
    ],
    imports: [
       BrowserModule,

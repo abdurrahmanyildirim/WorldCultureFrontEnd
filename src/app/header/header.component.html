@@ -11,12 +11,15 @@
         <li class="nav-item">
           <a class="nav-link" routerLink="/countries"><i style="font-size: 30px" class="fas fa-globe-europe"></i> </a>
         </li>
-
+        
         <li class="nav-item" *ngIf="isAuthenticate">
-          <a class="nav-link" routerLink="/followings"><i style="font-size: 30px" class="fas fa-users"></i></a>
+          <a class="nav-link" routerLink="/followings"><i style="font-size: 30px" class="fas fa-user-friends"></i> </a>
         </li>
         <li class="nav-item" *ngIf="isAuthenticate">
           <a class="nav-link" routerLink="/post-add"><i class="fas fa-marker" style="font-size: 30px"></i></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/explore"><i style="font-size: 30px" class="fas fa-hiking"></i></a>
         </li>
       </ul>
       <div *ngIf="!isAuthenticate" class="pull-right">
@@ -32,7 +35,7 @@
       <div *ngIf="isAuthenticate" class="pull-right">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item">
-            <a class="nav-link" routerLink="/profile/{{currentAccountId}}"><i style="font-size: 30px"
+            <a class="nav-link" (click)="fillCurrentId()" routerLink="/profile/{{accountID}}"><i style="font-size: 30px"
                 class="fas fa-user"></i></a>
           </li>
           <li class="nav-item">

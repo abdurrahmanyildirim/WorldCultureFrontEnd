@@ -16,9 +16,9 @@ export class PostService {
 
   baseUrl: string = "https://localhost:44303/api/";
 
-  addPost(post:any) {
+  addPost(post: any) {
     this.httpClient.post(this.baseUrl + "post/createPost", post, { headers: this.authService.headers })
-    .subscribe();
+      .subscribe();
   }
 
   getPosts(placeId): Observable<PostForCard[]> {
@@ -44,5 +44,13 @@ export class PostService {
 
   getReviews(postId): Observable<Review[]> {
     return this.httpClient.get<Review[]>(this.baseUrl + "reviews/" + postId);
+  }
+
+  getRandomPosts():Observable<PostForCard[]> {
+    return this.httpClient.get<PostForCard[]>(this.baseUrl + "post/random-posts");
+  }
+
+  getMostViewPosts():Observable<PostForCard[]> {
+    return this.httpClient.get<PostForCard[]>(this.baseUrl + "post/most-view-posts");
   }
 }

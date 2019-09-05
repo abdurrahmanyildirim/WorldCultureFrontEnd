@@ -51,4 +51,8 @@ export class ProfileService {
     return this.httpClient
       .get(this.baseUrl + "profile/getPublicInfo", { headers: this.authService.headers });
   }
+
+  getMostFollowerAccounts():Observable<ProfileUser[]>{
+    return this.httpClient.get<ProfileUser[]>(this.baseUrl+"profile/most-follower-accounts");
+  }
 }
