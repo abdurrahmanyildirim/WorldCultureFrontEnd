@@ -4,6 +4,8 @@ import { ProfileUser } from '../models/profileUser';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
 import { AlertifyService } from '../services/alertify.service';
+import { PostService } from '../services/post.service';
+import { PostForCard } from '../models/postForCard';
 
 @Component({
   selector: 'app-profile',
@@ -16,8 +18,11 @@ export class ProfileComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private authService: AuthService,
     private router: Router,
-    private alertifyService: AlertifyService
+    private alertifyService: AlertifyService,
+    private postService:PostService
   ) { }
+
+  postsForProfile: PostForCard[];
 
   account: ProfileUser;
   currentAccountId: number;
@@ -30,6 +35,7 @@ export class ProfileComponent implements OnInit {
     this.activatedRoute.params.subscribe(params => {
       this.routeId = params["accountID"];
       this.getAccountData(params["accountID"]);
+      this.getPosts(params["accountID"]);
       if (this.isAuthenticate) {
         this.currentAccountId = this.authService.getCurrentAccountId();
         if (this.currentAccountId == params["accountID"]) {
@@ -44,6 +50,12 @@ export class ProfileComponent implements OnInit {
         }
       }
     });
+  }
+
+  getPosts(userId) {
+    this.postService.getPostsByUserID(userId).subscribe(data=>{
+      this.postsForProfile=data;
+    })
   }
 
   changeToRelationStatus() {

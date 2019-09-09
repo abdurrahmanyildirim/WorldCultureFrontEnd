@@ -7,7 +7,6 @@ import { PostComponent } from './post/post.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { ProfileComponent } from './profile/profile.component';
-import { ProfileDetailComponent } from './profile/profile-detail/profile-detail.component';
 import { FollowingAccountComponent } from './followingAccount/followingAccount.component';
 import { PostDetailComponent } from './post/post-detail/post-detail.component';
 import { CountryDetailComponent } from './country/country-detail/country-detail.component';
@@ -16,6 +15,7 @@ import { FamousPlaceDetailComponent } from './famous-place/famous-place-detail/f
 import { PostAddComponent } from './post/post-add/post-add.component';
 import { ProfileRelationComponent } from './profile/profile-relation/profile-relation.component';
 import { ExploreComponent } from './explore/explore.component';
+import { SearchComponent } from './search/search.component';
 
 export const routes: Routes = [
   { path: 'countries', component: CountryComponent },
@@ -29,7 +29,7 @@ export const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'profile/:accountID', component: ProfileComponent },
-  { path: 'profileDetail/:accountID', component: ProfileDetailComponent },
+  { path: 'search', component: SearchComponent },
   { path: 'relations/:accountID', component: ProfileRelationComponent },
   { path: '', component: CountryComponent },
   { path: 'explore', component: ExploreComponent },

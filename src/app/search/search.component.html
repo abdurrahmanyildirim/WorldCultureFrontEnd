@@ -1,0 +1,24 @@
+<div class="container">
+  <div class="row" style="margin-top: 5px;">
+    <div class="col-6" *ngFor="let result of results">
+      <div class="card mb-3" style="max-width: 540px;">
+        <div class="row no-gutters">
+          <div class="col-4">
+            <img style="height: 190px" src="{{result.profilePhotoPath}}" class="card-img" alt="{{result.firstName}}">
+          </div>
+          <div class="col-8">
+            <div class="card-body">
+              <h5 class="card-title">{{result.firstName}} {{result.lastName}}</h5>
+              <p class="card-text">{{result.personelInfo}}</p>
+              <p class="card-text">
+                <small class="text-muted">{{result.memberDate | date:'fullDate'}}</small><br>
+              </p>
+              <button type="button" class="btn btn-primary" routerLink="/profile/{{result.accountID}}">Hesabı
+                İncele</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

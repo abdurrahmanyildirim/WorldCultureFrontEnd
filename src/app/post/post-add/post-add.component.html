@@ -1,68 +1,74 @@
 <div class="container">
   <div class="row justify-content-md-center">
-    <div class="card col-6" style="margin-top: 5px;">
-      <div class="card-header">
-        <h3>Paylaşım Formu</h3>
-      </div>
-      <div class="card-body">
-        <form [formGroup]="postForm" (ngSubmit)="addPost()">
-          <div class="form-group">
-            <select class="form-control" (change)="getCities($event.target.value)">
-              <option *ngFor="let country of countries" [value]="country.countryID">{{country.countryName}}</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <select class="form-control" (change)="getFamousPlaces($event.target.value)">
-              <option *ngFor="let city of cities" [value]="city.cityID">{{city.cityName}}</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <select class="form-control" formControlName="famousPlaceID">
-              <option *ngFor="let place of famousPlaces" [value]="place.famousPlaceID">{{place.placeName}}</option>
-            </select>
-            <span class="help-block"
-              *ngIf="postForm.get('famousPlaceID').hasError('required') && postForm.get('famousPlaceID').touched">
-              Bir yer seçmelisiniz.
-            </span>
-          </div>
-          <div class="form-group">
-            <input #fileInput style="display: none" type="file" ng2FileSelect [uploader]="uploader">
-            <button class="btn btn-primary form-control" (click)="fileInput.click()"><i class="far fa-file-image"></i>
-              Resim Seç</button>
-            <div *ngFor="let item of uploader.queue">
-              <div class="form-group">
-                <button class="btn btn-primary form-control" (click)="item.upload()"><i class="fas fa-file-upload"></i>
-                  Seçili Resmi Yükle</button>
+    <div class="col-6">
+
+
+      <div class="card" style="margin-top: 5px;">
+        <div class="card-header">
+          Paylaşım Formu
+        </div>
+        <div class="card-body">
+          <form [formGroup]="postForm" (ngSubmit)="addPost()">
+            <div class="form-group">
+              <select class="form-control" (change)="getCities($event.target.value)">
+                <option *ngFor="let country of countries" [value]="country.countryID">{{country.countryName}}</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <select class="form-control" (change)="getFamousPlaces($event.target.value)">
+                <option *ngFor="let city of cities" [value]="city.cityID">{{city.cityName}}</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <select class="form-control" formControlName="famousPlaceID">
+                <option *ngFor="let place of famousPlaces" [value]="place.famousPlaceID">{{place.placeName}}</option>
+              </select>
+              <span class="help-block"
+                *ngIf="postForm.get('famousPlaceID').hasError('required') && postForm.get('famousPlaceID').touched">
+                Bir yer seçmelisiniz.
+              </span>
+            </div>
+            <div class="form-group">
+              <input #fileInput style="display: none" type="file" ng2FileSelect [uploader]="uploader">
+              <button class="btn btn-primary form-control" (click)="fileInput.click()"><i class="far fa-file-image"></i>
+                Resim Seç</button>
+              <div *ngFor="let item of uploader.queue">
+                <div class="form-group">
+                  <button class="btn btn-primary form-control" (click)="item.upload()"><i
+                      class="fas fa-file-upload"></i>
+                    Seçili Resmi Yükle</button>
+                </div>
               </div>
             </div>
-          </div>
-          <div class="form-group">
-            <input name="title" formControlName="title" type="text" class="form-control" placeholder="Başlık">
-            <span class="help-block"
-              *ngIf="postForm.get('title').hasError('required') && postForm.get('title').touched">
-              Bu alan boş bırakılamaz.
-            </span>
-            <span class="help-block"
-              *ngIf="postForm.get('title').hasError('maxlength') && postForm.get('title').touched">
-              30 karakterden fazla olamaz.
-            </span>
-          </div>
-          <div class="form-group">
-            <app-ngx-editor formControlName="description" [spellcheck]="true" [placeholder]="'İçeriği buraya yazınız.'">
-            </app-ngx-editor>
-            <span class="help-block"
-              *ngIf="postForm.get('description').hasError('required') && postForm.get('description').touched">
-              Bu alan boş bırakılamaz.
-            </span>
-            <span class="help-block"
-              *ngIf="postForm.get('description').hasError('maxlength') && postForm.get('description').touched">
-              500 karakterden fazla olamaz.
-            </span>
-          </div>
-          <div class="form-group">
-            <input type="submit" class="btn btn-success form-control" [disabled]="postForm.invalid" value="Paylaş">
-          </div>
-        </form>
+            <div class="form-group">
+              <input name="title" formControlName="title" type="text" class="form-control" placeholder="Başlık">
+              <span class="help-block"
+                *ngIf="postForm.get('title').hasError('required') && postForm.get('title').touched">
+                Bu alan boş bırakılamaz.
+              </span>
+              <span class="help-block"
+                *ngIf="postForm.get('title').hasError('maxlength') && postForm.get('title').touched">
+                30 karakterden fazla olamaz.
+              </span>
+            </div>
+            <div class="form-group">
+              <app-ngx-editor formControlName="description" [spellcheck]="true"
+                [placeholder]="'İçeriği buraya yazınız.'">
+              </app-ngx-editor>
+              <span class="help-block"
+                *ngIf="postForm.get('description').hasError('required') && postForm.get('description').touched">
+                Bu alan boş bırakılamaz.
+              </span>
+              <span class="help-block"
+                *ngIf="postForm.get('description').hasError('maxlength') && postForm.get('description').touched">
+                500 karakterden fazla olamaz.
+              </span>
+            </div>
+            <div class="form-group">
+              <input type="submit" class="btn btn-success form-control" [disabled]="postForm.invalid" value="Paylaş">
+            </div>
+          </form>
+        </div>
       </div>
     </div>
   </div>

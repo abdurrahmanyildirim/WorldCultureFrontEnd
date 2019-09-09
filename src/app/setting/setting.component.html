@@ -18,7 +18,7 @@
         </div>
       </div>
       <ng-template #settings>
-        <div class="card">
+        <div class="card" style="z-index: inherit">
           <div class="card-body">
             <div *ngIf="photoSetting">
               <input #fileInput style="display: none" type="file" ng2FileSelect [uploader]="uploader">

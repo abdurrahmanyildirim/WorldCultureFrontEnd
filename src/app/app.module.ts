@@ -21,7 +21,6 @@ import { PostComponent } from './post/post.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { ProfileComponent } from './profile/profile.component';
-import { ProfileDetailComponent } from './profile/profile-detail/profile-detail.component';
 import { FollowingAccountComponent } from './followingAccount/followingAccount.component';
 import { SettingComponent } from './setting/setting.component';
 import { from } from 'rxjs';
@@ -33,6 +32,7 @@ import { PostAddComponent } from './post/post-add/post-add.component';
 import { ProfileRelationComponent } from './profile/profile-relation/profile-relation.component';
 import { FooterComponent } from './footer/footer.component';
 import { ExploreComponent } from './explore/explore.component';
+import { SearchComponent } from './search/search.component';
 
 @NgModule({
    declarations: [
@@ -45,7 +45,6 @@ import { ExploreComponent } from './explore/explore.component';
       LoginComponent,
       RegisterComponent,
       ProfileComponent,
-      ProfileDetailComponent,
       FollowingAccountComponent,
       SettingComponent,
       FilterCountryPipe,
@@ -56,7 +55,8 @@ import { ExploreComponent } from './explore/explore.component';
       PostAddComponent,
       ProfileRelationComponent,
       FooterComponent,
-      ExploreComponent
+      ExploreComponent,
+      SearchComponent
    ],
    imports: [
       BrowserModule,

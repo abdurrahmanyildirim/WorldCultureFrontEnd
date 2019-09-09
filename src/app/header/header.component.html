@@ -1,25 +1,30 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <div class="container">
-    <a class="navbar-brand" routerLink="/countries">W.C</a>
+    <a class="navbar-brand" routerLink="/countries"><i style="font-size: 35px" class="fas fa-map-marked-alt"></i></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
       aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item">
-          <a class="nav-link" routerLink="/countries"><i style="font-size: 30px" class="fas fa-globe-europe"></i> </a>
-        </li>
-        
-        <li class="nav-item" *ngIf="isAuthenticate">
-          <a class="nav-link" routerLink="/followings"><i style="font-size: 30px" class="fas fa-user-friends"></i> </a>
+          <a class="nav-link" routerLink="/countries"><i style="font-size: 35px" class="fas fa-globe-europe"></i> </a>
         </li>
         <li class="nav-item" *ngIf="isAuthenticate">
-          <a class="nav-link" routerLink="/post-add"><i class="fas fa-marker" style="font-size: 30px"></i></a>
+          <a class="nav-link" routerLink="/followings"><i style="font-size: 35px" class="fas fa-user-friends"></i> </a>
+        </li>
+        <li class="nav-item" *ngIf="isAuthenticate">
+          <a class="nav-link" routerLink="/post-add"><i class="fas fa-marker" style="font-size: 35px"></i></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLink="/explore"><i style="font-size: 30px" class="fas fa-hiking"></i></a>
+          <a class="nav-link" routerLink="/explore"><i style="font-size: 35px" class="fas fa-hiking"></i></a>
+        </li>
+        <li class="nav-item" style="margin: 10px 0 0 10px">
+          <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" required type="search" name="key" [(ngModel)]="key" placeholder="Ara"
+              aria-label="Search">
+            <a class="btn btn-outline-success my-2 my-sm-0" [routerLink]="['/search']" [queryParams]="{key: key}">Ara</a>
+          </form>
         </li>
       </ul>
       <div *ngIf="!isAuthenticate" class="pull-right">

@@ -18,10 +18,6 @@
               <p class="card-text">{{account.personelInfo}} </p>
               <p class="card-text"><small class="text-muted">{{account.memberDate | date:'fullDate'}} tarihinde
                   katıldı.</small></p>
-              <div class="form-group">
-                <a class="btn btn-primary form-control" routerLink="/profileDetail/{{account.accountID}}">Paylaşımları
-                  İncele</a>
-              </div>
               <div *ngIf="!isMain">
                 <div class="form-group">
                   <input type="button" class="btn btn-warning form-control" (click)="changeToRelationStatus()"
@@ -38,5 +34,15 @@
         <app-setting></app-setting>
       </div>
     </div>
+    <div class="col-4" *ngFor="let p of postsForProfile" style="margin-top: 10px">
+      <div class="card" style="width:100%;height: 360px;">
+        <img class="card-img-top" style="width: 100%;height:250px" src="{{p.postPhotoPath}}" alt="{{p.title}}">
+        <div class="card-body">
+          <h5 class="card-title">{{p.title}}</h5>
+          <a class="form-control btn btn-primary" type="submit" routerLink="/post/{{p.postID}}">İncele</a>
+        </div>
+      </div>
+    </div>
+
   </div>
 </div>
