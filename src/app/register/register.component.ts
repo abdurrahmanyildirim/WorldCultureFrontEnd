@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../services/auth.service';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
+import { AlertifyService } from '../services/alertify.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -10,7 +12,9 @@ import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms'
 export class RegisterComponent implements OnInit {
 
   constructor(private authService: AuthService,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private alertifyService:AlertifyService,
+    private router:Router
   ) { }
 
   registerForm: FormGroup;
@@ -36,7 +40,15 @@ export class RegisterComponent implements OnInit {
   register() {
     if (this.registerForm.valid) {
       this.registerUser = Object.assign({}, this.registerForm.value);
-      this.authService.register(this.registerUser);
+      this.authService.register(this.registerUser)
+      .subscribe(data => {
+        this.alertifyService.success("Üyelik işlemi başarılı. Giriş yapabilirsiniz.")
+        this.router.navigateByUrl('/login');
+      },
+      err=>{
+        this.alertifyService.error("Bir hata meydana geldi. Lütfen tekrar deneyiniz.");
+        this.registerForm.reset();
+      });
     }
   }
 

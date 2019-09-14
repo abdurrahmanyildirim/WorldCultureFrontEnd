@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { AuthService } from '../services/auth.service';
+import { AlertifyService } from '../services/alertify.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -9,7 +11,9 @@ import { AuthService } from '../services/auth.service';
 export class LoginComponent {
 
   constructor(
-    private authService:AuthService
+    private authService:AuthService,
+    private alertifyService:AlertifyService,
+    private router:Router
     ) { }
 
   loginUser:any={
@@ -18,7 +22,18 @@ export class LoginComponent {
   };
 
   login(){
-    this.authService.login(this.loginUser);
+    this.authService.login(this.loginUser).subscribe(data => {
+      this.authService.saveToken(data);
+      // this.userToken = data;
+      // this.decodenToken = this.jwtHelper.decodeToken(data.toString());
+      this.alertifyService.success("Giriş yapıldı.")
+      this.router.navigateByUrl('/countries');
+    },
+    err=>{
+      this.alertifyService.error("Email veya Şifre hatalı!");
+      this.loginUser.email=null;
+      this.loginUser.password=null;
+    });
   }
 
 }

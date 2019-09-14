@@ -1,0 +1,122 @@
+<div class="col-8">
+  <div class="card" style="margin-top: 5px;">
+    <div class="card-header">
+      Yeni Ülke Ekle
+    </div>
+    <div class="card-body">
+      <form [formGroup]="countryForm" (ngSubmit)="addCountry()">
+        <div class="form-group">
+          <input name="countryName" formControlName="countryName" type="text" class="form-control"
+            placeholder="Ülke Adı">
+          <span style="color: red" class="help-block"
+            *ngIf="countryForm.get('countryName').hasError('required') && countryForm.get('countryName').touched">
+            Bu alan boş bırakılamaz.
+          </span>
+          <span style="color: red" class="help-block"
+            *ngIf="countryForm.get('countryName').hasError('maxlength') && countryForm.get('countryName').touched">
+            150 karakterden fazla olamaz.
+          </span>
+        </div>
+        <div class="form-group">
+          <input name="population" formControlName="population" type="number" class="form-control" placeholder="Nüfus">
+          <span style="color: red" class="help-block"
+            *ngIf="countryForm.get('population').hasError('required') && countryForm.get('population').touched">
+            Bu alan boş bırakılamaz.
+          </span>
+          <span style="color: red" class="help-block"
+            *ngIf="countryForm.get('population').hasError('maxlength') && countryForm.get('population').touched">
+            13 karakterden fazla olamaz.
+          </span>
+        </div>
+        <div class="form-group">
+          <input name="currency" formControlName="currency" type="text" class="form-control" placeholder="Para Birimi">
+          <span style="color: red" class="help-block"
+            *ngIf="countryForm.get('currency').hasError('required') && countryForm.get('currency').touched">
+            Bu alan boş bırakılamaz.
+          </span>
+          <span style="color: red" class="help-block"
+            *ngIf="countryForm.get('currency').hasError('maxlength') && countryForm.get('currency').touched">
+            6 karakterden fazla olamaz.
+          </span>
+        </div>
+        <div class="form-group">
+          <input name="capital" formControlName="capital" type="text" class="form-control" placeholder="Başkent">
+          <span style="color: red" class="help-block"
+            *ngIf="countryForm.get('capital').hasError('required') && countryForm.get('capital').touched">
+            Bu alan boş bırakılamaz.
+          </span>
+          <span style="color: red" class="help-block"
+            *ngIf="countryForm.get('capital').hasError('maxlength') && countryForm.get('capital').touched">
+            100 karakterden fazla olamaz.
+          </span>
+        </div>
+        <div class="form-group">
+          <input formControlName="president" type="text" class="form-control" placeholder="Ülke Başkanı">
+          <span style="color: red" class="help-block"
+            *ngIf="countryForm.get('president').hasError('required') && countryForm.get('president').touched">
+            Bu alan boş bırakılamaz.
+          </span>
+          <span style="color: red" class="help-block"
+            *ngIf="countryForm.get('president').hasError('maxlength') && countryForm.get('president').touched">
+            80 karakterden fazla olamaz.
+          </span>
+        </div>
+        <div class="form-group">
+          <input formControlName="ethnicIdentity" type="text" class="form-control" placeholder="Etnik Köken">
+          <span style="color: red" class="help-block"
+            *ngIf="countryForm.get('ethnicIdentity').hasError('required') && countryForm.get('ethnicIdentity').touched">
+            Bu alan boş bırakılamaz.
+          </span>
+          <span style="color: red" class="help-block"
+            *ngIf="countryForm.get('ethnicIdentity').hasError('maxlength') && countryForm.get('ethnicIdentity').touched">
+            20 karakterden fazla olamaz.
+          </span>
+        </div>
+        <div class="form-group">
+          <input formControlName="language" type="text" class="form-control" placeholder="Dil">
+          <span style="color: red" class="help-block"
+            *ngIf="countryForm.get('language').hasError('required') && countryForm.get('language').touched">
+            Bu alan boş bırakılamaz.
+          </span>
+          <span style="color: red" class="help-block"
+            *ngIf="countryForm.get('language').hasError('maxlength') && countryForm.get('language').touched">
+            20 karakterden fazla olamaz.
+          </span>
+        </div>
+        <div class="form-group">
+          <input class="form-control" type="date" formControlName="foundedDate" required placeholder="Kuruluş Tarihi">
+          <span style="color: red" class="help-block"
+            *ngIf="countryForm.get('foundedDate').hasError('required') && countryForm.get('foundedDate').touched">
+            Zorunlu Alan!
+          </span>
+        </div>
+        <div class="form-group" *ngIf="imageUrl">
+          <img class="img-thumbnail" src="{{imageUrl}}" alt="country" style="width: 100%;height: 300px">
+        </div>
+        <div class="form-group">
+          <input #fileInput style="display: none" type="file" ng2FileSelect [uploader]="uploader">
+          <button class="btn btn-primary form-control" (click)="fileInput.click()"><i class="far fa-file-image"></i>
+            Resim Seç</button>
+          <div *ngFor="let item of uploader.queue">
+            <div class="form-group">
+              <button class="btn btn-primary form-control" (click)="item.upload()"><i class="fas fa-file-upload"></i>
+                Seçili Resmi Yükle</button>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <app-ngx-editor formControlName="summaryInfo" [spellcheck]="true" [placeholder]="'Özet Bilgi'">
+          </app-ngx-editor>
+          <span style="color: red" class="help-block"
+            *ngIf="countryForm.get('summaryInfo').hasError('required') && countryForm.get('summaryInfo').touched">
+            Zorunlu Alan!
+          </span>
+        </div>
+        <div class="form-group">
+          <input type="submit" class="btn btn-outline-success form-control" [disabled]="countryForm.invalid"
+            value="Paylaş">
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

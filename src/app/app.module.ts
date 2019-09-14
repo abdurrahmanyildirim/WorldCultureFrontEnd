@@ -23,7 +23,6 @@ import { RegisterComponent } from './register/register.component';
 import { ProfileComponent } from './profile/profile.component';
 import { FollowingAccountComponent } from './followingAccount/followingAccount.component';
 import { SettingComponent } from './setting/setting.component';
-import { from } from 'rxjs';
 import { PostDetailComponent } from './post/post-detail/post-detail.component';
 import { CityDetailComponent } from './city/city-detail/city-detail.component';
 import { FamousPlaceDetailComponent } from './famous-place/famous-place-detail/famous-place-detail.component';
@@ -33,6 +32,9 @@ import { ProfileRelationComponent } from './profile/profile-relation/profile-rel
 import { FooterComponent } from './footer/footer.component';
 import { ExploreComponent } from './explore/explore.component';
 import { SearchComponent } from './search/search.component';
+import { AdminPanelComponent } from './admin-panel/admin-panel.component';
+import { CountryAddComponent } from './admin-panel/country-add/country-add.component';
+import { CityAddComponent } from './admin-panel/city-add/city-add.component';
 
 @NgModule({
    declarations: [
@@ -56,7 +58,10 @@ import { SearchComponent } from './search/search.component';
       ProfileRelationComponent,
       FooterComponent,
       ExploreComponent,
-      SearchComponent
+      SearchComponent,
+      AdminPanelComponent,
+      CountryAddComponent,
+      CityAddComponent
    ],
    imports: [
       BrowserModule,

@@ -31,7 +31,8 @@ export class PostAddComponent implements OnInit {
     private authService: AuthService,
     private postService: PostService,
     private router: Router,
-    private alertifyService: AlertifyService) { }
+    private alertifyService: AlertifyService
+  ) { }
 
   countries: CountryForCard[];
   cities: CityForCard[];
@@ -45,17 +46,17 @@ export class PostAddComponent implements OnInit {
 
 
   ngOnInit() {
-    if(this.isAuthenticate){
+    if (this.isAuthenticate) {
       this.createPostForm();
       this.getCountries();
       this.getCities(1);
       this.getFamousPlaces(1);
       this.initializeUploader();
-    }else{
+    } else {
       this.router.navigateByUrl('/login');
       this.alertifyService.error("İzinsiz giriş tespit edildi!");
     }
-    
+
   }
 
   createPostForm() {
@@ -93,9 +94,10 @@ export class PostAddComponent implements OnInit {
       if (response) {
         const res: Photo = JSON.parse(response);
         this.postForm.patchValue({
-          postPhotoPath: res.postPhotoPath,
+          postPhotoPath: res.photoPath,
           publicId: res.publicId
         })
+        this.imageUrl=res.photoPath;
         this.alertifyService.success("Fotoğraf başarıyla yüklendi.")
       }
     }
@@ -125,7 +127,7 @@ export class PostAddComponent implements OnInit {
     })
   }
 
-  get isAuthenticate(){
+  get isAuthenticate() {
     return this.authService.loggedIn();
   }
 

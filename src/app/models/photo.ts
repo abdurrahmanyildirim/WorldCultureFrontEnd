@@ -1,4 +1,4 @@
 export class Photo {
-    postPhotoPath:string;
+    photoPath:string;
     publicId:string;
 }

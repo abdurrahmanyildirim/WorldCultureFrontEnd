@@ -19,11 +19,15 @@
         <li class="nav-item">
           <a class="nav-link" routerLink="/explore"><i style="font-size: 35px" class="fas fa-hiking"></i></a>
         </li>
+        <li class="nav-item" *ngIf="checkRole">
+          <a class="nav-link" routerLink="/admin-panel"><i style="font-size: 35px" class="fas fa-edit"></i></a>
+        </li>
         <li class="nav-item" style="margin: 10px 0 0 10px">
           <form class="form-inline my-2 my-lg-0">
             <input class="form-control mr-sm-2" required type="search" name="key" [(ngModel)]="key" placeholder="Ara"
               aria-label="Search">
-            <a class="btn btn-outline-success my-2 my-sm-0" [routerLink]="['/search']" [queryParams]="{key: key}">Ara</a>
+            <a class="btn btn-outline-success my-2 my-sm-0" [routerLink]="['/search']"
+              [queryParams]="{key: key}">Ara</a>
           </form>
         </li>
       </ul>
@@ -40,11 +44,11 @@
       <div *ngIf="isAuthenticate" class="pull-right">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item">
-            <a class="nav-link" (click)="fillCurrentId()" routerLink="/profile/{{accountID}}"><i style="font-size: 30px"
+            <a class="nav-link" (click)="fillCurrentId()" routerLink="/profile/{{accountID}}"><i style="font-size: 35px"
                 class="fas fa-user"></i></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" (click)="logOut()" routerLink="/countries"><i style="font-size: 30px"
+            <a class="nav-link" (click)="logOut()" routerLink="/countries"><i style="font-size: 35px"
                 class="fas fa-sign-out-alt"></i></a>
           </li>
         </ul>

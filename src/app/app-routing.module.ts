@@ -16,6 +16,7 @@ import { PostAddComponent } from './post/post-add/post-add.component';
 import { ProfileRelationComponent } from './profile/profile-relation/profile-relation.component';
 import { ExploreComponent } from './explore/explore.component';
 import { SearchComponent } from './search/search.component';
+import { AdminPanelComponent } from './admin-panel/admin-panel.component';
 
 export const routes: Routes = [
   { path: 'countries', component: CountryComponent },
@@ -35,6 +36,7 @@ export const routes: Routes = [
   { path: 'explore', component: ExploreComponent },
   { path: 'followings', component: FollowingAccountComponent },
   { path: 'post-add', component: PostAddComponent },
+  { path: 'admin-panel', component: AdminPanelComponent },
   { path: '**', redirectTo: 'countries', pathMatch: 'full' }
 ];
 
