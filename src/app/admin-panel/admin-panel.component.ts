@@ -12,28 +12,28 @@ import { AlertifyService } from '../services/alertify.service';
 export class AdminPanelComponent implements OnInit {
 
   constructor(
-    private authService:AuthService,
-    private router:Router,
-    private alertifyService:AlertifyService
+    private authService: AuthService,
+    private router: Router,
+    private alertifyService: AlertifyService
   ) { }
 
-  countryPanel:boolean=true;
-  cityPanel:boolean=false;
+  countryPanel: boolean = true;
+  cityPanel: boolean = false;
   ngOnInit() {
-    if(this.authService.getCurrentAccountRole()!=Roles.A){
+    if (!this.authService.loggedIn() || this.authService.getCurrentAccountRole() != Roles.A) {
       this.alertifyService.error("Yetkisiz giriş tespit edildi!");
       this.router.navigateByUrl('/countries');
     }
   }
 
-  showCountryPanel(){
-    this.countryPanel=true;
-    this.cityPanel=false;
+  showCountryPanel() {
+    this.countryPanel = true;
+    this.cityPanel = false;
   }
 
-  showCityPanel(){
-    this.cityPanel=true;
-    this.countryPanel=false;
+  showCityPanel() {
+    this.cityPanel = true;
+    this.countryPanel = false;
   }
 
 }

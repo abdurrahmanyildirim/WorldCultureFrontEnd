@@ -9,7 +9,7 @@
         <div class="card-body">
           <p class="card-text">
             <strong>Nüfus:</strong> {{city.population}} <br>
-            <strong>Özet Bilgi:</strong> {{city.description}}
+            <strong>Özet Bilgi: </strong><span [innerHtml]="city.description"></span>
           </p>
           <a class="btn btn-primary" routerLink="/famousPlaces/{{city.cityID}}">{{city.cityName}} Mekanlarını
             Görüntüle</a>
