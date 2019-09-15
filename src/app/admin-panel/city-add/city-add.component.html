@@ -1,67 +1,65 @@
-<div class="col-8">
-  <div class="card" style="margin-top: 5px;">
-    <div class="card-header">
-      Yeni Şehir Ekle
-    </div>
-    <div class="card-body">
-      <form [formGroup]="cityForm" (ngSubmit)="addCity()">
-        <div class="form-group">
-          <select class="form-control" formControlName="countryID">
-            <option *ngFor="let country of countries" [value]="country.countryID">{{country.countryName}}</option>
-          </select>
-          <span style="color: red" class="help-block"
-            *ngIf="cityForm.get('countryID').hasError('required') && cityForm.get('countryID').touched">
-            Bir ülke seçmelisiniz.
-          </span>
-        </div>
-        <div class="form-group">
-          <input formControlName="cityName" type="text" class="form-control" placeholder="Şehir Adı">
-          <span style="color: red" class="help-block"
-            *ngIf="cityForm.get('cityName').hasError('required') && cityForm.get('cityName').touched">
-            Bu alan boş bırakılamaz.
-          </span>
-          <span style="color: red" class="help-block"
-            *ngIf="cityForm.get('cityName').hasError('maxlength') && cityForm.get('cityName').touched">
-            100 karakterden fazla olamaz.
-          </span>
-        </div>
-        <div class="form-group">
-          <input name="population" formControlName="population" type="text" class="form-control" placeholder="Nüfus">
-          <span style="color: red" class="help-block"
-            *ngIf="cityForm.get('population').hasError('required') && cityForm.get('population').touched">
-            Bu alan boş bırakılamaz.
-          </span>
-          <span style="color: red" class="help-block"
-            *ngIf="cityForm.get('population').hasError('maxlength') && cityForm.get('population').touched">
-            13 karakterden fazla olamaz.
-          </span>
-        </div>
-        <div class="form-group" *ngIf="imageUrl">
-          <img class="img-thumbnail" src="{{imageUrl}}" alt="city" style="width: 100%;height: 300px">
-        </div>
-        <div class="form-group">
-          <input #fileInput style="display: none" type="file" ng2FileSelect [uploader]="uploader">
-          <button class="btn btn-primary form-control" (click)="fileInput.click()"><i class="far fa-file-image"></i>
-            Resim Seç</button>
-          <div *ngFor="let item of uploader.queue">
-            <div class="form-group">
-              <button class="btn btn-primary form-control" (click)="item.upload()"><i class="fas fa-file-upload"></i>
-                Seçili Resmi Yükle</button>
-            </div>
+<div class="card" style="margin-top: 5px;">
+  <div class="card-header">
+    Yeni Şehir Ekle
+  </div>
+  <div class="card-body">
+    <form [formGroup]="cityForm" (ngSubmit)="addCity()">
+      <div class="form-group">
+        <select class="form-control" formControlName="countryID">
+          <option *ngFor="let country of countries" [value]="country.countryID">{{country.countryName}}</option>
+        </select>
+        <span style="color: red" class="help-block"
+          *ngIf="cityForm.get('countryID').hasError('required') && cityForm.get('countryID').touched">
+          Bir ülke seçmelisiniz.
+        </span>
+      </div>
+      <div class="form-group">
+        <input formControlName="cityName" type="text" class="form-control" placeholder="Şehir Adı">
+        <span style="color: red" class="help-block"
+          *ngIf="cityForm.get('cityName').hasError('required') && cityForm.get('cityName').touched">
+          Bu alan boş bırakılamaz.
+        </span>
+        <span style="color: red" class="help-block"
+          *ngIf="cityForm.get('cityName').hasError('maxlength') && cityForm.get('cityName').touched">
+          100 karakterden fazla olamaz.
+        </span>
+      </div>
+      <div class="form-group">
+        <input name="population" formControlName="population" type="text" class="form-control" placeholder="Nüfus">
+        <span style="color: red" class="help-block"
+          *ngIf="cityForm.get('population').hasError('required') && cityForm.get('population').touched">
+          Bu alan boş bırakılamaz.
+        </span>
+        <span style="color: red" class="help-block"
+          *ngIf="cityForm.get('population').hasError('maxlength') && cityForm.get('population').touched">
+          13 karakterden fazla olamaz.
+        </span>
+      </div>
+      <div class="form-group" *ngIf="imageUrl">
+        <img class="img-thumbnail" src="{{imageUrl}}" alt="city" style="width: 100%;height: 300px">
+      </div>
+      <div class="form-group">
+        <input #fileInput style="display: none" type="file" ng2FileSelect [uploader]="uploader">
+        <button class="btn btn-primary form-control" (click)="fileInput.click()"><i class="far fa-file-image"></i>
+          Resim Seç</button>
+        <div *ngFor="let item of uploader.queue">
+          <div class="form-group">
+            <button class="btn btn-primary form-control" (click)="item.upload()"><i class="fas fa-file-upload"></i>
+              Seçili Resmi Yükle</button>
           </div>
         </div>
-        <div class="form-group">
-          <app-ngx-editor formControlName="description" [spellcheck]="true" [placeholder]="'Özet Bilgi'">
-          </app-ngx-editor>
-          <span style="color: red" class="help-block"
-            *ngIf="cityForm.get('description').hasError('required') && cityForm.get('description').touched">
-            Zorunlu Alan!
-          </span>
-        </div>
-        <div class="form-group">
-          <input type="submit" class="btn btn-outline-success form-control" [disabled]="cityForm.invalid" value="Ekle">
-        </div>
-      </form>
-    </div>
+      </div>
+      <div class="form-group">
+        <app-ngx-editor formControlName="description" [spellcheck]="true" [placeholder]="'Özet Bilgi'">
+        </app-ngx-editor>
+        <span style="color: red" class="help-block"
+          *ngIf="cityForm.get('description').hasError('required') && cityForm.get('description').touched">
+          Zorunlu Alan!
+        </span>
+      </div>
+      <div class="form-group">
+        <input type="submit" class="btn btn-outline-success form-control" [disabled]="cityForm.invalid" value="Ekle">
+      </div>
+    </form>
   </div>
 </div>
