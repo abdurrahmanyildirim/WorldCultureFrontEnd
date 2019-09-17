@@ -6,7 +6,9 @@
     <form [formGroup]="cityForm" (ngSubmit)="addCity()">
       <div class="form-group">
         <select class="form-control" formControlName="countryID">
-          <option *ngFor="let country of countries" [value]="country.countryID">{{country.countryName}}</option>
+          <option class="form-control" *ngFor="let country of countries" [value]="country.countryID">
+            {{country.countryName}}
+          </option>
         </select>
         <span style="color: red" class="help-block"
           *ngIf="cityForm.get('countryID').hasError('required') && cityForm.get('countryID').touched">

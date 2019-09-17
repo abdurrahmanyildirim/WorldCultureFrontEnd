@@ -1,0 +1,60 @@
+<div class="card" style="margin-top: 5px;">
+  <div class="card-header">
+    Yeni Mekan Ekle
+  </div>
+  <div class="card-body">
+    <form [formGroup]="famousPlaceForm" (ngSubmit)="addPlace()">
+      <div class="form-group">
+        <select class="form-control" (change)="getCities($event.target.value)">
+          <option *ngFor="let country of countries" [value]="country.countryID">{{country.countryName}}</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <select class="form-control">
+          <option *ngFor="let city of cities" [value]="city.cityID">{{city.cityName}}</option>
+        </select>
+        <span style="color: red" class="help-block"
+          *ngIf="famousPlaceForm.get('cityID').hasError('required') && famousPlaceForm.get('cityID').touched">
+          Bir ülke seçmelisiniz.
+        </span>
+      </div>
+      <div class="form-group">
+        <input formControlName="placeName" type="text" class="form-control" placeholder="Mekan Adı">
+        <span style="color: red" class="help-block"
+          *ngIf="famousPlaceForm.get('placeName').hasError('required') && famousPlaceForm.get('placeName').touched">
+          Bu alan boş bırakılamaz.
+        </span>
+        <span style="color: red" class="help-block"
+          *ngIf="famousPlaceForm.get('placeName').hasError('maxlength') && famousPlaceForm.get('placeName').touched">
+          50 karakterden fazla olamaz.
+        </span>
+      </div>
+      <div class="form-group" *ngIf="imageUrl">
+        <img class="img-thumbnail" src="{{imageUrl}}" alt="city" style="width: 100%;height: 300px">
+      </div>
+      <div class="form-group">
+        <input #fileInput style="display: none" type="file" ng2FileSelect [uploader]="uploader">
+        <button class="btn btn-primary form-control" (click)="fileInput.click()"><i class="far fa-file-image"></i>
+          Resim Seç</button>
+        <div *ngFor="let item of uploader.queue">
+          <div class="form-group">
+            <button class="btn btn-primary form-control" (click)="item.upload()"><i class="fas fa-file-upload"></i>
+              Seçili Resmi Yükle</button>
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <app-ngx-editor formControlName="description" [spellcheck]="true" [placeholder]="'Açıklama'">
+        </app-ngx-editor>
+        <span style="color: red" class="help-block"
+          *ngIf="famousPlaceForm.get('description').hasError('required') && famousPlaceForm.get('description').touched">
+          Zorunlu Alan!
+        </span>
+      </div>
+      <div class="form-group">
+        <input type="submit" class="btn btn-outline-success form-control" [disabled]="famousPlaceForm.invalid"
+          value="Ekle">
+      </div>
+    </form>
+  </div>
+</div>

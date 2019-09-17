@@ -35,6 +35,7 @@ import { SearchComponent } from './search/search.component';
 import { AdminPanelComponent } from './admin-panel/admin-panel.component';
 import { CountryAddComponent } from './admin-panel/country-add/country-add.component';
 import { CityAddComponent } from './admin-panel/city-add/city-add.component';
+import { FamousPlaceAddComponent } from './admin-panel/famous-place-add/famous-place-add.component';
 
 @NgModule({
    declarations: [
@@ -61,7 +62,8 @@ import { CityAddComponent } from './admin-panel/city-add/city-add.component';
       SearchComponent,
       AdminPanelComponent,
       CountryAddComponent,
-      CityAddComponent
+      CityAddComponent,
+      FamousPlaceAddComponent
    ],
    imports: [
       BrowserModule,

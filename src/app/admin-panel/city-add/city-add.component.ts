@@ -28,8 +28,8 @@ export class CityAddComponent implements OnInit {
   uploader: FileUploader;
 
   ngOnInit() {
-    this.createCityForm();
     this.getCountries();
+    this.createCityForm();
     this.initializeUploader();
   }
 
@@ -59,33 +59,33 @@ export class CityAddComponent implements OnInit {
     });
   }
 
-   initializeUploader() {
-     this.uploader = new FileUploader({
-       url: 'https://localhost:44303/api/city/upload-photo',
-       authToken: 'Bearer ' + localStorage.getItem('token'),
-       isHTML5: true,
-       allowedFileType: ['image'],
-       autoUpload: false,
-       removeAfterUpload: true,
-       maxFileSize: 10 * 1024 * 1024
-     })
+  initializeUploader() {
+    this.uploader = new FileUploader({
+      url: 'https://localhost:44303/api/city/upload-photo',
+      authToken: 'Bearer ' + localStorage.getItem('token'),
+      isHTML5: true,
+      allowedFileType: ['image'],
+      autoUpload: false,
+      removeAfterUpload: true,
+      maxFileSize: 10 * 1024 * 1024
+    })
 
-     this.uploader.onSuccessItem = (item, response, status, headers) => {
-       if (response) {
-         const res: Photo = JSON.parse(response);
-         this.cityForm.patchValue({
-           cityPhotoPath: res.photoPath,
-           publicId: res.publicId
-         })
-         this.imageUrl = res.photoPath;
-         this.alertifyService.success("Fotoğraf başarıyla yüklendi.")
-       }
-     }
+    this.uploader.onSuccessItem = (item, response, status, headers) => {
+      if (response) {
+        const res: Photo = JSON.parse(response);
+        this.cityForm.patchValue({
+          cityPhotoPath: res.photoPath,
+          publicId: res.publicId
+        })
+        this.imageUrl = res.photoPath;
+        this.alertifyService.success("Fotoğraf başarıyla yüklendi.")
+      }
+    }
 
-     this.uploader.onErrorItem = () => {
+    this.uploader.onErrorItem = () => {
       this.alertifyService.error("Fotoğraf yüklenirken bir hata meydana geldi.")
-     }
-   }
+    }
+  }
 
 
 }

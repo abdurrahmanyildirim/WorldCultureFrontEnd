@@ -47,10 +47,8 @@ export class PostAddComponent implements OnInit {
 
   ngOnInit() {
     if (this.isAuthenticate) {
-      this.createPostForm();
       this.getCountries();
-      this.getCities(1);
-      this.getFamousPlaces(1);
+      this.createPostForm();
       this.initializeUploader();
     } else {
       this.router.navigateByUrl('/login');
@@ -97,7 +95,7 @@ export class PostAddComponent implements OnInit {
           postPhotoPath: res.photoPath,
           publicId: res.publicId
         })
-        this.imageUrl=res.photoPath;
+        this.imageUrl = res.photoPath;
         this.alertifyService.success("Fotoğraf başarıyla yüklendi.")
       }
     }
@@ -106,6 +104,7 @@ export class PostAddComponent implements OnInit {
   getCountries() {
     this.countryService.getCountries().subscribe(data => {
       this.countries = data;
+      this.getCities(this.countries[0].countryID);
     })
   }
 
@@ -115,6 +114,7 @@ export class PostAddComponent implements OnInit {
       this.postForm.patchValue({
         famousPlaceID: ''
       })
+      this.getFamousPlaces(this.cities[0].cityID);
     })
   }
 

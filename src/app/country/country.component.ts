@@ -11,26 +11,21 @@ import { AuthService } from '../services/auth.service';
 })
 export class CountryComponent implements OnInit {
 
-  constructor(private countryService: CountryService,
-    private authService:AuthService) { }
+  constructor(private countryService: CountryService) { }
 
   countries: CountryForCard[];
   searchKey: string;
-  decodenToken:any;
+  hataMesaji:any;
+  
 
   ngOnInit() {
     this.getCountries();
-    this.getCurrentToken();
   }
 
   getCountries() {
     this.countryService.getCountries().subscribe(data => {
       this.countries = data;
     })
-  }
-
-  getCurrentToken(){
-    this.decodenToken=this.authService.getCurrentAccountRole();
   }
   
 }

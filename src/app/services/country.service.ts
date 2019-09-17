@@ -28,4 +28,8 @@ export class CountryService {
     .post(this.baseUrl + "country/add-country", country, { headers: this.authService.headers })
     .subscribe();
   }
+
+  exception():any{
+    return this.httpClient.get("https://localhost:44303/throw");
+  }
 }
