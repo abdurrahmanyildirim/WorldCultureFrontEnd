@@ -30,7 +30,7 @@ export class LoginComponent {
       this.router.navigateByUrl('/countries');
     },
     err=>{
-      this.alertifyService.error("Email veya Şifre hatalı!");
+      this.alertifyService.error(err.error);
       this.loginUser.email=null;
       this.loginUser.password=null;
     });

@@ -44,6 +44,7 @@ export class FamousPlaceAddComponent implements OnInit {
       this.famousPlaceService.add(this.famousPlace);
       this.alertifyService.success("Yeni yer eklendi.");
       this.famousPlaceForm.reset();
+      this.imageUrl = null;
     }
   }
 

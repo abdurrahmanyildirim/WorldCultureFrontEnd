@@ -46,7 +46,7 @@ export class RegisterComponent implements OnInit {
         this.router.navigateByUrl('/login');
       },
       err=>{
-        this.alertifyService.error("Bir hata meydana geldi. Lütfen tekrar deneyiniz.");
+        this.alertifyService.error(err.error);
         this.registerForm.reset();
       });
     }

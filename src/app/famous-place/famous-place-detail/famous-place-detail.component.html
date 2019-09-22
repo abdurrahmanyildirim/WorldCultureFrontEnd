@@ -9,7 +9,7 @@
         <div class="card-header"><strong>{{famousPlace.placeName | uppercase}} </strong></div>
         <div class="card-body">
           <p class="card-text">
-            <strong>Özet Bilgi:</strong> {{famousPlace.description}}
+            <strong>Özet Bilgi:</strong> <span [innerHtml]="famousPlace.description"></span>
           </p>
           <a class="btn btn-primary" routerLink="/posts/{{famousPlace.famousPlaceID}}">{{famousPlace.placeName}}'da
             Yapılan Paylaşımlar</a>

@@ -45,6 +45,7 @@ export class CityAddComponent implements OnInit {
       this.cityService.add(this.city);
       this.alertifyService.success("Şehir Eklendi.");
       this.cityForm.reset();
+      this.imageUrl=null;
     }
   }
 

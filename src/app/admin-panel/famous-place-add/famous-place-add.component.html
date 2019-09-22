@@ -10,12 +10,12 @@
         </select>
       </div>
       <div class="form-group">
-        <select class="form-control">
+        <select class="form-control" formControlName="cityID">
           <option *ngFor="let city of cities" [value]="city.cityID">{{city.cityName}}</option>
         </select>
         <span style="color: red" class="help-block"
           *ngIf="famousPlaceForm.get('cityID').hasError('required') && famousPlaceForm.get('cityID').touched">
-          Bir ülke seçmelisiniz.
+          Bir şehir seçmelisiniz.
         </span>
       </div>
       <div class="form-group">

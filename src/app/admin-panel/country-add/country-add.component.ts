@@ -34,6 +34,7 @@ export class CountryAddComponent implements OnInit {
       this.countryService.addCountry(this.country);
       this.alertifyService.success("Yeni ülke eklendi.");
       this.countryForm.reset();
+      this.imageUrl=null;
     }
   }
 
