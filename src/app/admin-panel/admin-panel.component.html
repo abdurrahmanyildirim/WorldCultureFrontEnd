@@ -5,21 +5,19 @@
                 <div class="row">
                     <div class="col-3">
                         <div class="btn-group-vertical" style="width: 100%">
-                            <button class="btn btn-outline-success" (click)="showCountryPanel()">Ülke Paneli</button>
-                            <button class="btn btn-outline-success" (click)="showCityPanel()">Şehir Paneli</button>
-                            <button class="btn btn-outline-success" (click)="showPlacePanel()">Mekan Paneli</button>
+                            <button class="btn btn-outline-success" 
+                            routerLinkActive='active'
+                                routerLink='country-add'>Ülke Paneli</button>
+                            <button class="btn btn-outline-success"
+                            routerLinkActive='active'
+                                routerLink='city-add'>Şehir Paneli</button>
+                            <button class="btn btn-outline-success" 
+                            routerLinkActive='active'
+                                routerLink='famous-place-add'>Mekan Paneli</button>
                         </div>
                     </div>
                     <div class="col-9">
-                        <div *ngIf="cityPanel">
-                            <app-city-add></app-city-add>
-                        </div>
-                        <div *ngIf="countryPanel">
-                            <app-country-add></app-country-add>
-                        </div>
-                        <div *ngIf="placePanel" >
-                            <app-famous-place-add></app-famous-place-add>
-                        </div>
+                        <router-outlet></router-outlet>
                     </div>
                 </div>
             </div>

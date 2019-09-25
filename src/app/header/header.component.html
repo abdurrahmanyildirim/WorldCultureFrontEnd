@@ -8,19 +8,19 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item">
-          <a class="nav-link" routerLink="/countries"><i style="font-size: 35px" class="fas fa-globe-europe"></i> </a>
+          <a class="nav-link" routerLinkActive='active' routerLink="/countries"><i style="font-size: 35px" class="fas fa-globe-europe"></i> </a>
         </li>
         <li class="nav-item" *ngIf="isAuthenticate">
-          <a class="nav-link" routerLink="/followings"><i style="font-size: 35px" class="fas fa-user-friends"></i> </a>
+          <a class="nav-link" routerLinkActive='active' routerLink="/followings"><i style="font-size: 35px" class="fas fa-user-friends"></i> </a>
         </li>
         <li class="nav-item" *ngIf="isAuthenticate">
-          <a class="nav-link" routerLink="/post-add"><i class="fas fa-marker" style="font-size: 35px"></i></a>
+          <a class="nav-link" routerLinkActive='active' routerLink="/post-add"><i class="fas fa-marker" style="font-size: 35px"></i></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLink="/explore"><i style="font-size: 35px" class="fas fa-hiking"></i></a>
+          <a class="nav-link" routerLinkActive='active' routerLink="/explore"><i style="font-size: 35px" class="fas fa-hiking"></i></a>
         </li>
         <li class="nav-item" *ngIf="checkRole">
-          <a class="nav-link" routerLink="/admin-panel"><i style="font-size: 35px" class="fas fa-edit"></i></a>
+          <a class="nav-link" routerLinkActive='active' routerLink="/admin-panel"><i style="font-size: 35px" class="fas fa-edit"></i></a>
         </li>
         <li class="nav-item" style="margin: 10px 0 0 10px">
           <form class="form-inline my-2 my-lg-0">
@@ -34,17 +34,19 @@
       <div *ngIf="!isAuthenticate" class="pull-right">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item">
-            <a class="nav-link" routerLink="/login">Giriş Yap</a>
+            <a class="nav-link" routerLinkActive='active' routerLink="/login">
+              <i class="fas fa-sign-in-alt" style="font-size: 35px"></i></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" routerLink="/register">Üye Ol</a>
+            <a class="nav-link" routerLinkActive='active' routerLink="/register">
+              <i class="fas fa-user-plus" style="font-size: 35px"></i></a>
           </li>
         </ul>
       </div>
       <div *ngIf="isAuthenticate" class="pull-right">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item">
-            <a class="nav-link" (click)="fillCurrentId()" routerLink="/profile/{{accountID}}"><i style="font-size: 35px"
+            <a class="nav-link" routerLinkActive='active' (click)="fillCurrentId()" routerLink="/profile/{{accountID}}"><i style="font-size: 35px"
                 class="fas fa-user"></i></a>
           </li>
           <li class="nav-item">

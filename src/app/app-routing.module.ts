@@ -17,6 +17,9 @@ import { ProfileRelationComponent } from './profile/profile-relation/profile-rel
 import { ExploreComponent } from './explore/explore.component';
 import { SearchComponent } from './search/search.component';
 import { AdminPanelComponent } from './admin-panel/admin-panel.component';
+import { CityAddComponent } from './admin-panel/city-add/city-add.component';
+import { CountryAddComponent } from './admin-panel/country-add/country-add.component';
+import { FamousPlaceAddComponent } from './admin-panel/famous-place-add/famous-place-add.component';
 
 export const routes: Routes = [
   { path: 'countries', component: CountryComponent },
@@ -36,12 +39,19 @@ export const routes: Routes = [
   { path: 'explore', component: ExploreComponent },
   { path: 'followings', component: FollowingAccountComponent },
   { path: 'post-add', component: PostAddComponent },
-  { path: 'admin-panel', component: AdminPanelComponent },
+  {
+    path: 'admin-panel', component: AdminPanelComponent, children: [
+      { path: 'city-add', component: CityAddComponent },
+      { path: 'country-add', component: CountryAddComponent },
+      { path: 'famous-place-add', component: FamousPlaceAddComponent }
+    ]
+  },
+
   { path: '**', redirectTo: 'countries', pathMatch: 'full' }
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes),RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
