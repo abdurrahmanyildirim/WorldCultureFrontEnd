@@ -20,6 +20,8 @@ import { AdminPanelComponent } from './admin-panel/admin-panel.component';
 import { CityAddComponent } from './admin-panel/city-add/city-add.component';
 import { CountryAddComponent } from './admin-panel/country-add/country-add.component';
 import { FamousPlaceAddComponent } from './admin-panel/famous-place-add/famous-place-add.component';
+import { AuthGuard } from './guards/auth.guard';
+import { RoleGuard } from './guards/role.guard';
 
 export const routes: Routes = [
   { path: 'countries', component: CountryComponent },
@@ -37,10 +39,12 @@ export const routes: Routes = [
   { path: 'relations/:accountID', component: ProfileRelationComponent },
   { path: '', component: CountryComponent },
   { path: 'explore', component: ExploreComponent },
-  { path: 'followings', component: FollowingAccountComponent },
-  { path: 'post-add', component: PostAddComponent },
+  { path: 'followings', component: FollowingAccountComponent, canDeactivate:[AuthGuard] },
+  { path: 'post-add', component: PostAddComponent, canActivate: [AuthGuard] },
   {
-    path: 'admin-panel', component: AdminPanelComponent, children: [
+    path: 'admin-panel', component: AdminPanelComponent,
+    canActivate: [AuthGuard, RoleGuard]
+    , children: [
       { path: 'city-add', component: CityAddComponent },
       { path: 'country-add', component: CountryAddComponent },
       { path: 'famous-place-add', component: FamousPlaceAddComponent }
@@ -51,7 +55,7 @@ export const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes),RouterModule.forChild(routes)],
+  imports: [RouterModule.forRoot(routes), RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

@@ -37,6 +37,10 @@ import { CountryAddComponent } from './admin-panel/country-add/country-add.compo
 import { CityAddComponent } from './admin-panel/city-add/city-add.component';
 import { FamousPlaceAddComponent } from './admin-panel/famous-place-add/famous-place-add.component';
 
+//Guards
+import { AuthGuard } from './guards/auth.guard';
+import { RoleGuard } from './guards/role.guard';
+
 @NgModule({
    declarations: [
       AppComponent,
@@ -75,7 +79,9 @@ import { FamousPlaceAddComponent } from './admin-panel/famous-place-add/famous-p
       NgxEditorModule
    ],
    providers: [
-      AlertifyService
+      AlertifyService,
+      AuthGuard,
+      RoleGuard
    ],
    bootstrap: [
       AppComponent
