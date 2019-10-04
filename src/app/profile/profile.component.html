@@ -31,7 +31,31 @@
     </div>
     <div class="col-7">
       <div *ngIf="isMain">
-        <app-setting></app-setting>
+        <div class="row">
+          <div class="col-2">
+            <button style="background-color: white;border-radius: 50px;" class="btn btn-default"
+              routerLink="profile-public-info">
+              <i style="font-size: 30px" class="fas fa-tools"></i>
+            </button>
+            <button style="background-color: white;border-radius: 50px;" class="btn btn-default"
+              routerLink="profile-photo">
+              <i style="font-size: 30px" class="fas fa-camera"></i>
+            </button>
+            <button style="background-color: white;border-radius: 50px;" class="btn btn-default"
+              routerLink="profile-password">
+              <i style="font-size: 30px" class="fas fa-key"></i>
+            </button>
+          </div>
+          <div class="col-7">
+            <div class="pull-right">
+              <div class="card" style="z-index: inherit">
+                <div class="card-body">
+                  <router-outlet></router-outlet>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
     <div class="col-4" *ngFor="let p of postsForProfile" style="margin-top: 10px">

@@ -22,7 +22,6 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { ProfileComponent } from './profile/profile.component';
 import { FollowingAccountComponent } from './followingAccount/followingAccount.component';
-import { SettingComponent } from './setting/setting.component';
 import { PostDetailComponent } from './post/post-detail/post-detail.component';
 import { CityDetailComponent } from './city/city-detail/city-detail.component';
 import { FamousPlaceDetailComponent } from './famous-place/famous-place-detail/famous-place-detail.component';
@@ -36,10 +35,15 @@ import { AdminPanelComponent } from './admin-panel/admin-panel.component';
 import { CountryAddComponent } from './admin-panel/country-add/country-add.component';
 import { CityAddComponent } from './admin-panel/city-add/city-add.component';
 import { FamousPlaceAddComponent } from './admin-panel/famous-place-add/famous-place-add.component';
+import { ProfilePasswordComponent } from './profile/profile-password/profile-password.component';
+import { ProfilePhotoComponent } from './profile/profile-photo/profile-photo.component';
+import { ProfilePublicInfoComponent } from './profile/profile-public-info/profile-public-info.component';
 
 //Guards
 import { AuthGuard } from './guards/auth.guard';
 import { RoleGuard } from './guards/role.guard';
+import { FormKontrol } from './guards/formKontrol';
+
 
 @NgModule({
    declarations: [
@@ -53,7 +57,6 @@ import { RoleGuard } from './guards/role.guard';
       RegisterComponent,
       ProfileComponent,
       FollowingAccountComponent,
-      SettingComponent,
       FilterCountryPipe,
       PostDetailComponent,
       CityDetailComponent,
@@ -67,7 +70,10 @@ import { RoleGuard } from './guards/role.guard';
       AdminPanelComponent,
       CountryAddComponent,
       CityAddComponent,
-      FamousPlaceAddComponent
+      FamousPlaceAddComponent,
+      ProfilePasswordComponent,
+      ProfilePhotoComponent,
+      ProfilePublicInfoComponent
    ],
    imports: [
       BrowserModule,
@@ -81,7 +87,8 @@ import { RoleGuard } from './guards/role.guard';
    providers: [
       AlertifyService,
       AuthGuard,
-      RoleGuard
+      RoleGuard,
+      FormKontrol
    ],
    bootstrap: [
       AppComponent

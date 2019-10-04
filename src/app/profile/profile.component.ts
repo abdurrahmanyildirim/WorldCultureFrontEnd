@@ -34,7 +34,7 @@ export class ProfileComponent implements OnInit {
   ngOnInit() {
     this.activatedRoute.params.subscribe(params => {
       this.routeId = params["accountID"];
-      this.getAccountData(params["accountID"]);
+      this.getAccountData();
       this.getPosts(params["accountID"]);
       if (this.isAuthenticate) {
         this.currentAccountId = this.authService.getCurrentAccountId();
@@ -72,7 +72,7 @@ export class ProfileComponent implements OnInit {
         this.alertifyService.error("Takipten çıktınız.")
         this.followButton = "Takip Et"
       }
-      this.getAccountData(this.routeId);
+      this.getAccountData();
     } else {
       this.alertifyService.error("Sisteme giriş yapmalısınız.")
       this.router.navigateByUrl('/login');
@@ -83,8 +83,8 @@ export class ProfileComponent implements OnInit {
     return this.authService.loggedIn();
   }
 
-  getAccountData(userId) {
-    this.profileService.getUserData(userId).subscribe(data => {
+  getAccountData() {
+    this.profileService.getUserData(this.routeId).subscribe(data => {
       this.account = data;
     })
   }

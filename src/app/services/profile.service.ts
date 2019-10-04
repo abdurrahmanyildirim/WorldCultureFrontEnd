@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { ProfileUser } from '../models/profileUser';
 import { AuthService } from './auth.service';
+import { PublicSettingUser } from '../models/publicSettingUser';
 
 @Injectable({
   providedIn: 'root'
@@ -47,9 +48,9 @@ export class ProfileService {
       .put("profile/changePublicInfo", publicSettings, { headers: this.authService.headers });
   }
 
-  getPublicSettings() {
+  getPublicSettings(): Observable<PublicSettingUser> {
     return this.httpClient
-      .get(this.baseUrl + "profile/getPublicInfo", { headers: this.authService.headers });
+      .get<PublicSettingUser>(this.baseUrl + "profile/getPublicInfo", { headers: this.authService.headers });
   }
 
   getMostFollowerAccounts(): Observable<ProfileUser[]> {

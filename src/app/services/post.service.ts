@@ -21,6 +21,12 @@ export class PostService {
       .subscribe();
   }
 
+  deletePostPhoto(publicId:string){
+    this.httpClient
+    .delete(this.baseUrl + "post/delete-photo?publicId="+publicId,{headers:this.authService.headers})
+    .subscribe();
+  }
+
   getPosts(placeId): Observable<PostForCard[]> {
     return this.httpClient.get<PostForCard[]>(this.baseUrl + "posts/" + placeId);
   }

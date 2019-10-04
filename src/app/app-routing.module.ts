@@ -22,6 +22,10 @@ import { CountryAddComponent } from './admin-panel/country-add/country-add.compo
 import { FamousPlaceAddComponent } from './admin-panel/famous-place-add/famous-place-add.component';
 import { AuthGuard } from './guards/auth.guard';
 import { RoleGuard } from './guards/role.guard';
+import { FormKontrol } from './guards/formKontrol';
+import { ProfilePasswordComponent } from './profile/profile-password/profile-password.component';
+import { ProfilePhotoComponent } from './profile/profile-photo/profile-photo.component';
+import { ProfilePublicInfoComponent } from './profile/profile-public-info/profile-public-info.component';
 
 export const routes: Routes = [
   { path: 'countries', component: CountryComponent },
@@ -34,13 +38,27 @@ export const routes: Routes = [
   { path: 'post/:postID', component: PostDetailComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
-  { path: 'profile/:accountID', component: ProfileComponent },
+  {
+    path: 'profile/:accountID', component: ProfileComponent
+    , children: [
+      {path: 'profile-public-info',component:ProfilePublicInfoComponent},
+      {path: 'profile-password',component:ProfilePasswordComponent},
+      {path:'profile-photo',component:ProfilePhotoComponent}
+    ]
+  },
   { path: 'search', component: SearchComponent },
   { path: 'relations/:accountID', component: ProfileRelationComponent },
   { path: '', component: CountryComponent },
   { path: 'explore', component: ExploreComponent },
-  { path: 'followings', component: FollowingAccountComponent, canDeactivate:[AuthGuard] },
-  { path: 'post-add', component: PostAddComponent, canActivate: [AuthGuard] },
+  {
+    path: 'followings', component: FollowingAccountComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'post-add', component: PostAddComponent,
+    canActivate: [AuthGuard],
+    canDeactivate: [FormKontrol]
+  },
   {
     path: 'admin-panel', component: AdminPanelComponent,
     canActivate: [AuthGuard, RoleGuard]

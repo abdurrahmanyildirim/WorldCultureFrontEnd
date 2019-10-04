@@ -1,0 +1,9 @@
+<input #fileInput style="display: none" type="file" ng2FileSelect [uploader]="uploader">
+<button class="btn btn-primary form-control" (click)="fileInput.click()"><i class="far fa-file-image"></i>
+  Resim Seç</button>
+<div *ngFor="let item of uploader.queue">
+  <div class="form-group">
+    <button class="btn btn-primary form-control" (click)="item.upload()"><i class="fas fa-file-upload"></i>
+      Seçili Resmi Yükle</button>
+  </div>
+</div>

@@ -16,13 +16,15 @@ import { CountryService } from 'src/app/services/country.service';
 import { AuthService } from 'src/app/services/auth.service';
 import { PostService } from 'src/app/services/post.service';
 import { AlertifyService } from 'src/app/services/alertify.service';
+import { IFormKontrol } from 'src/app/guards/formKontrol';
 
 @Component({
   selector: 'app-post-add',
   templateUrl: './post-add.component.html',
   styleUrls: ['./post-add.component.css']
 })
-export class PostAddComponent implements OnInit {
+export class PostAddComponent implements OnInit, IFormKontrol {
+
 
   constructor(private countryService: CountryService,
     private cityService: CityService,
@@ -34,6 +36,20 @@ export class PostAddComponent implements OnInit {
     private alertifyService: AlertifyService
   ) { }
 
+  FormKontrol(): boolean | import("rxjs").Observable<boolean> {
+    if (this.publicId) {
+      if (confirm("Sayfayı kapatmak istediğinize emin misiniz?")) {
+        this.postService.deletePostPhoto(this.publicId);
+        return true;
+      } else {
+        return false;
+      }
+    } else {
+      return true;
+    }
+
+  }
+
   countries: CountryForCard[];
   cities: CityForCard[];
   famousPlaces: FamousPlaceForCard[];
@@ -43,6 +59,7 @@ export class PostAddComponent implements OnInit {
   postForm: FormGroup;
   post: any = {};
   imageUrl: string;
+  publicId: string;
 
 
   ngOnInit() {
@@ -96,6 +113,7 @@ export class PostAddComponent implements OnInit {
           publicId: res.publicId
         })
         this.imageUrl = res.photoPath;
+        this.publicId = res.publicId;
         this.alertifyService.success("Fotoğraf başarıyla yüklendi.")
       }
     }
