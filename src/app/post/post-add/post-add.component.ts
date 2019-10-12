@@ -36,7 +36,7 @@ export class PostAddComponent implements OnInit, IFormKontrol {
     private alertifyService: AlertifyService
   ) { }
 
-  FormKontrol(): boolean | import("rxjs").Observable<boolean> {
+  formKontrol(): boolean | import("rxjs").Observable<boolean> {
     if (this.publicId) {
       if (confirm("Sayfayı kapatmak istediğinize emin misiniz?")) {
         this.postService.deletePostPhoto(this.publicId);

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ProfileUser } from '../models/profileUser';
 import { ProfileService } from '../services/profile.service';
 import { ActivatedRoute } from '@angular/router';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-search',
@@ -10,7 +11,8 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class SearchComponent implements OnInit {
 
-  constructor(private profileService: ProfileService,
+  constructor(
+    private profileService: ProfileService,
     private activatedRoute: ActivatedRoute
   ) { }
 
@@ -22,7 +24,7 @@ export class SearchComponent implements OnInit {
 
   search(key) {
     this.profileService.getSearch(key).subscribe(data => {
-      this.results = data
+      this.results = data;
     });
   }
 }
