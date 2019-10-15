@@ -4,6 +4,7 @@ import { LoginUser } from '../models/loginUser';
 import { JwtHelper, tokenNotExpired } from 'angular2-jwt';
 import { RegisterUser } from '../models/registerUser';
 import { AlertifyService } from './alertify.service';
+import { environment} from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +16,7 @@ export class AuthService {
     private alertifyService: AlertifyService
   ) { }
 
-  baseUrl: string = "https://localhost:44303/api/auth/";
+  baseUrl: string = environment.path + "/api/auth/";
   jwtHelper: JwtHelper = new JwtHelper();
   TOKEN_KEY = "token";
 

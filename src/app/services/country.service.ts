@@ -4,6 +4,7 @@ import { CountryForCard } from '../models/countryForCard';
 import { Observable } from 'rxjs';
 import { Country } from '../models/country';
 import { AuthService } from './auth.service';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +14,7 @@ export class CountryService {
   constructor(private httpClient: HttpClient,
     private authService: AuthService) { }
 
-  baseUrl: string = "https://localhost:44303/api/";
+  baseUrl: string = environment.path + "/api/";
 
   getCountries(): Observable<CountryForCard[]> {
     return this.httpClient.get<CountryForCard[]>(this.baseUrl + 'countries');

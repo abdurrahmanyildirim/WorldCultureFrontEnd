@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { FamousPlaceForCard } from '../models/famousPlaceForCard';
 import { FamousPlace } from '../models/famousPlace';
 import { AuthService } from './auth.service';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +14,7 @@ export class FamousPlaceService {
   constructor(private httpClient: HttpClient,
     private authService: AuthService) { }
 
-  baseUrl: string = "https://localhost:44303/api/";
+  baseUrl: string = environment.path + "/api/";
 
   getFamousPlaces(cityId): Observable<FamousPlaceForCard[]> {
     return this.httpClient.get<FamousPlaceForCard[]>(this.baseUrl + "places/" + cityId);

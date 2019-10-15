@@ -5,6 +5,7 @@ import { PostForCard } from '../models/postForCard';
 import { Post } from '../models/post';
 import { AuthService } from './auth.service';
 import { Review } from '../models/review';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +15,7 @@ export class PostService {
   constructor(private httpClient: HttpClient,
     private authService: AuthService) { }
 
-  baseUrl: string = "https://localhost:44303/api/";
+  baseUrl: string = environment.path + "/api/";
 
   addPost(post: any) {
     this.httpClient.post(this.baseUrl + "post/createPost", post, { headers: this.authService.headers })

@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { ProfileUser } from '../models/profileUser';
 import { AuthService } from './auth.service';
 import { PublicSettingUser } from '../models/publicSettingUser';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +15,7 @@ export class ProfileService {
     private authService: AuthService
   ) { }
 
-  baseUrl: string = "https://localhost:44303/api/";
+  baseUrl: string = environment.path + "/api/";
 
   getFollowers(userId): Observable<ProfileUser[]> {
     return this.httpClient.get<ProfileUser[]>(this.baseUrl + "profile/followers/" + userId);
