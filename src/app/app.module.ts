@@ -1,7 +1,7 @@
 //Modules
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FileUploadModule } from 'ng2-file-upload';
 import { NgxEditorModule } from 'ngx-editor';
@@ -43,6 +43,7 @@ import { ProfilePublicInfoComponent } from './profile/profile-public-info/profil
 import { AuthGuard } from './guards/auth.guard';
 import { RoleGuard } from './guards/role.guard';
 import { FormKontrol } from './guards/formKontrol';
+import { AuthInterceptorService } from './services/auth-interceptor.service';
 
 
 @NgModule({
@@ -88,7 +89,8 @@ import { FormKontrol } from './guards/formKontrol';
       AlertifyService,
       AuthGuard,
       RoleGuard,
-      FormKontrol
+      FormKontrol,
+      { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorService, multi: true }
    ],
    bootstrap: [
       AppComponent

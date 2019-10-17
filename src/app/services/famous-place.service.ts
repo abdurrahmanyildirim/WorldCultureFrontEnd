@@ -3,7 +3,6 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { FamousPlaceForCard } from '../models/famousPlaceForCard';
 import { FamousPlace } from '../models/famousPlace';
-import { AuthService } from './auth.service';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -11,8 +10,9 @@ import { environment } from 'src/environments/environment';
 })
 export class FamousPlaceService {
 
-  constructor(private httpClient: HttpClient,
-    private authService: AuthService) { }
+  constructor(
+    private httpClient: HttpClient
+  ) { }
 
   baseUrl: string = environment.path + "/api/";
 
@@ -26,7 +26,7 @@ export class FamousPlaceService {
 
   add(famousPlace: any) {
     this.httpClient
-      .post(this.baseUrl + "place/add-place", famousPlace, { headers: this.authService.headers })
+      .post(this.baseUrl + "place/add-place", famousPlace)
       .subscribe();
   }
 

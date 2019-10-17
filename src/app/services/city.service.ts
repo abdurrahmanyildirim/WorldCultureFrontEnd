@@ -3,7 +3,6 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { CityForCard } from '../models/cityForCard';
 import { City } from '../models/city';
-import { AuthService } from './auth.service';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -11,8 +10,8 @@ import { environment } from 'src/environments/environment';
 })
 export class CityService {
 
-  constructor(private httpClient: HttpClient,
-    private authService: AuthService
+  constructor(
+    private httpClient: HttpClient
   ) { }
 
   baseUrl: string = environment.path + "/api/";
@@ -26,7 +25,7 @@ export class CityService {
   }
 
   add(city: any) {
-    this.httpClient.post(this.baseUrl + "city/add-city", city, { headers: this.authService.headers })
+    this.httpClient.post(this.baseUrl + "city/add-city", city)
       .subscribe();
   }
 }

@@ -1,9 +1,8 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Observable, observable } from 'rxjs';
 import { PostForCard } from '../models/postForCard';
 import { Post } from '../models/post';
-import { AuthService } from './auth.service';
 import { Review } from '../models/review';
 import { environment } from 'src/environments/environment';
 
@@ -12,20 +11,21 @@ import { environment } from 'src/environments/environment';
 })
 export class PostService {
 
-  constructor(private httpClient: HttpClient,
-    private authService: AuthService) { }
+  constructor(
+    private httpClient: HttpClient
+  ) { }
 
   baseUrl: string = environment.path + "/api/";
 
   addPost(post: any) {
-    this.httpClient.post(this.baseUrl + "post/createPost", post, { headers: this.authService.headers })
+    this.httpClient.post(this.baseUrl + "post/createPost", post)
       .subscribe();
   }
 
-  deletePostPhoto(publicId:string){
+  deletePostPhoto(publicId: string) {
     this.httpClient
-    .delete(this.baseUrl + "post/delete-photo?publicId="+publicId,{headers:this.authService.headers})
-    .subscribe();
+      .delete(this.baseUrl + "post/delete-photo?publicId=" + publicId)
+      .subscribe();
   }
 
   getPosts(placeId): Observable<PostForCard[]> {
@@ -41,23 +41,23 @@ export class PostService {
   }
 
   getFollowingPosts(): Observable<PostForCard[]> {
-    return this.httpClient.get<PostForCard[]>(this.baseUrl + "followingAccountPosts", { headers: this.authService.headers })
+    return this.httpClient.get<PostForCard[]>(this.baseUrl + "followingAccountPosts")
   }
 
   sendReview(review: Review): Observable<Review[]> {
     return this.httpClient
-      .post<Review[]>(this.baseUrl + "addReview", review, { headers: this.authService.headers });
+      .post<Review[]>(this.baseUrl + "addReview", review);
   }
 
   getReviews(postId): Observable<Review[]> {
     return this.httpClient.get<Review[]>(this.baseUrl + "reviews/" + postId);
   }
 
-  getRandomPosts():Observable<PostForCard[]> {
+  getRandomPosts(): Observable<PostForCard[]> {
     return this.httpClient.get<PostForCard[]>(this.baseUrl + "post/random-posts");
   }
 
-  getMostViewPosts():Observable<PostForCard[]> {
+  getMostViewPosts(): Observable<PostForCard[]> {
     return this.httpClient.get<PostForCard[]>(this.baseUrl + "post/most-view-posts");
   }
 }

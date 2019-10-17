@@ -11,8 +11,9 @@ import { environment } from 'src/environments/environment';
 })
 export class CountryService {
 
-  constructor(private httpClient: HttpClient,
-    private authService: AuthService) { }
+  constructor(
+    private httpClient: HttpClient
+  ) { }
 
   baseUrl: string = environment.path + "/api/";
 
@@ -26,11 +27,11 @@ export class CountryService {
 
   addCountry(country: any) {
     this.httpClient
-    .post(this.baseUrl + "country/add-country", country, { headers: this.authService.headers })
-    .subscribe();
+      .post(this.baseUrl + "country/add-country", country)
+      .subscribe();
   }
 
-  exception():any{
+  exception(): any {
     return this.httpClient.get("https://localhost:44303/throw");
   }
 }

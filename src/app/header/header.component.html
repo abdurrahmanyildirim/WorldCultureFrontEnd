@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-lg navbar-dark" style="background-color: black;">
   <div class="container">
     <a class="navbar-brand" routerLink="/countries"><i style="font-size: 35px" class="fas fa-map-marked-alt"></i></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
@@ -8,19 +8,24 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item">
-          <a class="nav-link" routerLinkActive='active' routerLink="/countries"><i class="fas fa-globe-europe button-size"></i> </a>
+          <a class="nav-link" routerLinkActive='active' routerLink="/countries"><i
+              class="fas fa-globe-europe button-size"></i> </a>
         </li>
         <li class="nav-item" *ngIf="isAuthenticate">
-          <a class="nav-link" routerLinkActive='active' routerLink="/followings"><i class="fas fa-user-friends button-size"></i> </a>
+          <a class="nav-link" routerLinkActive='active' routerLink="/followings"><i
+              class="fas fa-user-friends button-size"></i> </a>
         </li>
         <li class="nav-item" *ngIf="isAuthenticate">
-          <a class="nav-link" routerLinkActive='active' routerLink="/post-add"><i class="far fa-plus-square button-size"></i></a>
+          <a class="nav-link" routerLinkActive='active' routerLink="/post-add"><i
+              class="far fa-plus-square button-size"></i></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLinkActive='active' routerLink="/explore"><i class="fas fa-hiking button-size"></i></a>
+          <a class="nav-link" routerLinkActive='active' routerLink="/explore"><i
+              class="fas fa-hiking button-size"></i></a>
         </li>
         <li class="nav-item" *ngIf="checkRole">
-          <a class="nav-link" routerLinkActive='active' routerLink="/admin-panel"><i class="fas fa-edit button-size"></i></a>
+          <a class="nav-link" routerLinkActive='active' routerLink="/admin-panel"><i
+              class="fas fa-edit button-size"></i></a>
         </li>
         <li class="nav-item" style="margin: 10px 0 0 10px">
           <form class="form-inline my-2 my-lg-0">
@@ -47,8 +52,7 @@
         <ul class="navbar-nav mr-auto">
           <li class="nav-item">
             <a class="nav-link" routerLinkActive='active' (click)="fillCurrentId()"
-             routerLink="/profile/{{accountID}}"><i
-                class="fas fa-user button-size"></i></a>
+              routerLink="/profile/{{accountID}}"><i class="fas fa-user button-size"></i></a>
           </li>
           <li class="nav-item">
             <a class="nav-link" (click)="logOut()" routerLink="/countries"><i
